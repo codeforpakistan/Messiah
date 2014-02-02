@@ -1,5 +1,8 @@
 package com.example.test;
 
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -27,6 +30,8 @@ String[] names;
 		btnShow = (Button) findViewById(R.id.btnShow);
 		btnShow.setOnClickListener(this);
 		
+		names = new String[3];
+		
 		settings.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -45,20 +50,46 @@ String[] names;
 	public void SendSMS()
 	{
 		try{
-			Bundle bundle = getIntent().getExtras();
-			names = bundle.getStringArray("contacts");
+			double lat=0.0,longi=0.0;
+			
+			LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+			Criteria cri= new Criteria();
+			cri.setAccuracy(Criteria.ACCURACY_FINE);
+					
+			String bbb = locationManager.getBestProvider(cri, true);
+			Location myLocation = locationManager.getLastKnownLocation(bbb);
+
+			lat = myLocation.getLatitude();
+			longi = myLocation.getLongitude();
+			
+			String pinpoint = "http://www.maps.google.com/maps?q="+lat+","+longi;
+			
+			SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
+			int Contacts = 0;
+			
+			for(int i =0; i<3; i++)
+			{
+				String val = prefs.getString("contactNumber"+i, "");
+				if(!val.equals(""))
+				{
+					Contacts++;
+					names[i] = val;
+					Log.d("Name:", names[i]);
+				}
+				
+			}
 			
 			String[] msgs = new String[3];
 			String number = "";
 			
-			SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
-			for(int i =0; i<3; i++)
+			
+			for(int i =0; i<Contacts; i++)
 			{
-				if(!names[i].equals(null))
+				if(!names[i].equals(""))
 				{
-					number = prefs.getString(names[i], "");
+					number = names[i];
 					msgs[i] = prefs.getString(names[i]+"Mes", "");
-					SmsManager.getDefault().sendTextMessage(number, null, msgs[i], null, null);
+					SmsManager.getDefault().sendTextMessage(number, null, msgs[i] + "Im at:" + pinpoint, null, null);
 				}
 				
 			}
@@ -68,7 +99,7 @@ String[] names;
 		}
 		catch(Exception ex)
 		{
-			//Error
+			Log.d("SMS Error: ", ex.getMessage().toString());
 		}
 	}
 

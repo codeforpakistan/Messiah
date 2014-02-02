@@ -5,6 +5,9 @@ import java.util.List;
 import com.example.test.R.id;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -21,6 +24,7 @@ public class Settings extends Activity implements OnClickListener{
 Button ShowContacts;
 Button ShowContacts2;
 Button ShowContact3;
+Button back;
 TextView txt1,txt2,txt3;
 Button Message1,Message2,Message3;
 
@@ -46,6 +50,9 @@ String[] names;
 		ShowContact3 = (Button) findViewById(R.id.SC3);
 		ShowContact3.setOnClickListener(this);
 		
+		back = (Button) findViewById(R.id.btnBack);
+		back.setOnClickListener(this);
+		
 		Message1 = (Button) findViewById(R.id.SM);
 		Message1.setOnClickListener(this);
 		Message2 = (Button) findViewById(R.id.SM1);
@@ -69,17 +76,46 @@ String[] names;
 				
 				for(int i =0; i<3;i++)
 				{
-					String s1 = number[i];
+					String num = number[i];
+					edit.putString("contactNumber"+i, num);
 					String contact = names[i];
-					edit.putString(contact, s1);
+					edit.putString("contactName"+i, contact);
 				}
+				
 				edit.commit();
 				
 				Intent intent = new Intent(Settings.this, MainActivity.class);
-				intent.putExtra("contacts", names);
 				startActivity(intent);
+				Settings.this.finish();
 			}
 		});
+	}
+	
+	public void NewActivity()
+	{
+		AlertDialog.Builder build = new Builder(this);
+		build.setMessage("Dont you want to Add a contact?");
+		build.setTitle("Confirm");
+		build.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				Intent intent = new Intent(Settings.this, MainActivity.class);
+				startActivity(intent);
+				Settings.this.finish();
+			}
+		});
+		build.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface d, int arg1) {
+				d.dismiss();
+			}
+		});
+		
+		AlertDialog alert = build.create();
+		alert.show();
+		
 	}
 	
 	public String[] getContacts(){
@@ -161,12 +197,15 @@ String[] names;
 		case R.id.SM2:
 			StartMessageActivity(2);
 			break;
+		case R.id.btnBack:
+			NewActivity();
+			break;
 		}
 	}
 
 	private void StartMessageActivity(int i) {
 		// TODO Auto-generated method stub
 		Intent d = new Intent(Settings.this , Message.class);
-		d.putExtra("conName", names[i]);
+		d.putExtra("conName", number[i]);
 		startActivity(d);
 	}}
