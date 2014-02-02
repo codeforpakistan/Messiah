@@ -3,7 +3,7 @@
     android:id="@+id/TableLayout1"
     android:layout_width="fill_parent"
     android:layout_height="match_parent" android:shrinkColumns="true"
-    android:background="@drawable/background" >
+    android:background="@drawable/backgd" >
 
     <include
         layout="@layout/header" />
@@ -23,13 +23,15 @@
         android:id="@+id/SC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+" />
+        android:background="@drawable/add"
+        android:text="" />
     
     <Button
         android:id="@+id/SM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Message" />
+        android:text="" 
+        android:background="@drawable/mail"/>
 
     </TableRow>
     
@@ -37,7 +39,7 @@
 
     <EditText
         android:id="@+id/Number2"
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:background="#ffffff" />
@@ -46,14 +48,15 @@
         android:id="@+id/SC2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="+" />
+        android:text="" 
+        android:background="@drawable/add"/>
     
     <Button
         android:id="@+id/SM1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Message" />
+        android:text="" 
+        android:background="@drawable/mail"/>
     
     </TableRow >
 
@@ -70,13 +73,15 @@
         android:id="@+id/SC3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+" />
+        android:background="@drawable/add"
+        android:text="" />
     
     <Button
         android:id="@+id/SM2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Message" />
+        android:text="" 
+        android:background="@drawable/mail"/>
     
     </TableRow>
     

@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -58,6 +59,7 @@ String strName = "";
 		
 		back = (Button) findViewById(R.id.btnBack);
 		back.setOnClickListener(this);
+		back.setVisibility(1);
 		
 		Message1 = (Button) findViewById(R.id.SM);
 		Message1.setOnClickListener(this);
@@ -90,8 +92,8 @@ String strName = "";
 				
 				edit.commit();
 				
-				Intent intent = new Intent(Settings.this, MainActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(Settings.this, MainActivity.class);
+//				startActivity(intent);
 				Settings.this.finish();
 			}
 		});
@@ -106,8 +108,8 @@ String strName = "";
 			
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
-				Intent intent = new Intent(Settings.this, MainActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(Settings.this, MainActivity.class);
+//				startActivity(intent);
 				Settings.this.finish();
 			}
 		});
@@ -160,6 +162,18 @@ String strName = "";
 	                strName = names[counter];
 	                number[counter] = new String(phoneNumber);
 	                counter++;
+	                
+	                if(counter == 1){
+	        	        txt1.setText(strName);
+	        	        }
+	        	        else if(counter == 2){
+	        	        	txt2.setText(strName);
+	        	        }
+	        	        else if(counter == 3)
+	        	        {
+	        	        	txt3.setText(strName);
+	        	        }
+	                
 	            }
 	            phones.close();
 	        }

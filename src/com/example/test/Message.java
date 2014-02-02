@@ -57,6 +57,7 @@ String name;
 				
 				try{
 					new SaveMsg().execute();
+					Message.this.finish();
 				}
 				catch (Exception e) {
 		            text.setText(e.toString());

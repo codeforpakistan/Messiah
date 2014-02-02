@@ -21,6 +21,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements OnClickListener {
 Button settings,btnShow;
 String[] names;
+int Enable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,14 @@ String[] names;
 		btnShow.setOnClickListener(this);
 		
 		names = new String[3];
+		Enable = -1;
+//		SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
+//		String val = prefs.getString("contactNumber"+1, "");
+//		if(val.equals(""))
+//		{
+//			btnShow.setEnabled(false);
+//			Toast.makeText(this, "Please set the Settings for the Application", Toast.LENGTH_LONG).show();
+//		}
 		
 		settings.setOnClickListener(new View.OnClickListener() {
 			
@@ -39,13 +48,25 @@ String[] names;
 				// TODO Auto-generated method stub
 				Intent s = new Intent(MainActivity.this , Settings.class);
 				startActivity(s);
-				MainActivity.this.finish();
 			}
 		});
 		
 		
 		
 	}
+	
+	@Override
+		protected void onResume() {
+			
+//		SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
+//		String val = prefs.getString("contactNumber"+1, "");
+//		if(!val.equals(""))
+//		{
+//			btnShow.setEnabled(true);
+//		}
+		
+			super.onResume();
+		}
 	
 	public void SendSMS()
 	{
