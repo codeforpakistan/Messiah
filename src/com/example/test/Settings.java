@@ -18,6 +18,7 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class Settings extends Activity implements OnClickListener{
@@ -34,10 +35,15 @@ int counter = 0;
 String[] number;
 String[] names;
 
+TableLayout mTab;
+
+String strName = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.settings);
 		Save = (Button) findViewById(R.id.Save);
 		ShowContacts = (Button) findViewById(R.id.SC);
@@ -137,7 +143,7 @@ String[] names;
 		super.onActivityResult(requestCode, resultCode, data);
 		int RESULT_PICK_CONTACT = 0;
 		if (requestCode == RESULT_PICK_CONTACT && resultCode == RESULT_OK) {
-	        String strName = "";
+	        
 	        String strPhone = "";
 
 	        Uri dataUri = data.getData();
@@ -151,6 +157,7 @@ String[] names;
 	                String phoneName = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 	                String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 	                names[counter] = new String(name);
+	                strName = names[counter];
 	                number[counter] = new String(phoneNumber);
 	                counter++;
 	            }
@@ -181,12 +188,15 @@ String[] names;
 		{
 		case R.id.SC:
 			Startprocess();
+			txt1.setText(strName);
 			break;
 		case R.id.SC2:
 			Startprocess();
+			txt2.setText(strName);
 			break;
 		case R.id.SC3:
 			Startprocess();
+			txt3.setText(strName);
 			break;
 		case R.id.SM:
 			StartMessageActivity(0);

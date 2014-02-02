@@ -2,18 +2,19 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/TableLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent" android:weightSum="100" >
+    android:layout_height="match_parent" android:shrinkColumns="true"
+    android:background="@drawable/background" >
 
     <include
-        android:layout_height="60dp"
         layout="@layout/header" />
 
-    <TableRow >
+    <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
     <EditText
         android:id="@+id/Number1"
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:ems="10"
+        android:background="#ffffff" >
 
         <requestFocus />
     </EditText>
@@ -32,13 +33,14 @@
 
     </TableRow>
     
-    <TableRow >
+    <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/Number2"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10"
+        android:background="#ffffff" />
 
     <Button
         android:id="@+id/SC2"
@@ -53,14 +55,15 @@
         android:layout_height="wrap_content"
         android:text="Message" />
     
-    </TableRow>
+    </TableRow >
 
-    <TableRow >
+    <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
     <EditText
         android:id="@+id/Number3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10"
+        android:background="#ffffff" />
 
 
     <Button
