@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Messiah</string>
+    <string name="action_settings">Settings</string>
+    <string name="footer">Add Contact</string>
+
+    <string-array name="countries">
+        <item>Baba Jani</item>
+        <item>Ali Raza</item>
+        <item>Ebtihaj</item>
+        <item>Mubassir</item>
+    </string-array>
+    <string-array name="menu">
+        <item>Edit Message</item>
+        <item>Remove Contact</item>
+        <item>View Message</item>
+    </string-array>
+
+</resources>

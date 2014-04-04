@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.test"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.SEND_SMS"/>
+<uses-permission 
+        android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+         >
+        <activity
+            android:name="com.example.test.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity   android:name="com.example.test.Settings"
+            android:label="@string/app_name">
+            
+            
+            <intent-filter>
+                
+                <action android:name="android.intent.action.Settings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.test.Message"
+            android:label="@string/app_name">
+            <intent-filter>
+                
+                <action android:name="android.intent.action.Message" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+        </activity>
+        <activity android:name="com.example.test.ListViewDemoActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                
+                <action android:name="android.intent.action.ListViewDemoActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.test.MainActivity" />
+            
+        </activity>
+  
+    </application>
+
+</manifest>
