@@ -5,7 +5,11 @@
     tools:context=".MainActivity"
     android:background="@drawable/background" android:weightSum="100" >
 
+<<<<<<< HEAD
     <!-- <include layout="@layout/main_header" /> -->
+=======
+    <include layout="@layout/main_header" />
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
     
     <RelativeLayout
         android:layout_width="match_parent"

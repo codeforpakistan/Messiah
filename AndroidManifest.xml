@@ -49,6 +49,7 @@
             </intent-filter>
             
         </activity>
+<<<<<<< HEAD
         <activity android:name="com.example.test.ListViewDemoActivity"
             android:label="@string/app_name">
             <intent-filter>
@@ -63,6 +64,8 @@
             
         </activity>
   
+=======
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
     </application>
 
 </manifest>

@@ -13,8 +13,11 @@ import android.content.SharedPreferences.Editor;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
+<<<<<<< HEAD
 import android.view.MenuInflater;
 import android.view.MenuItem;
+=======
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -29,6 +32,7 @@ int Enable;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+<<<<<<< HEAD
 		
 		
 		
@@ -36,6 +40,12 @@ int Enable;
 		btnShow = (Button) findViewById(R.id.btnShow);
 		btnShow.setOnClickListener(this);
 	
+=======
+		settings = (Button) findViewById(R.id.SetButton);
+		btnShow = (Button) findViewById(R.id.btnShow);
+		btnShow.setOnClickListener(this);
+		
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
 		names = new String[3];
 		Enable = -1;
 //		SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
@@ -45,12 +55,28 @@ int Enable;
 //			btnShow.setEnabled(false);
 //			Toast.makeText(this, "Please set the Settings for the Application", Toast.LENGTH_LONG).show();
 //		}
+<<<<<<< HEAD
 	
+=======
+		
+		settings.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent s = new Intent(MainActivity.this , Settings.class);
+				startActivity(s);
+			}
+		});
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
 		
 		
 		
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
 	
 	@Override
 		protected void onResume() {
@@ -124,6 +150,7 @@ int Enable;
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
+<<<<<<< HEAD
 		MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main, menu);
 	    return super.onCreateOptionsMenu(menu);
@@ -151,6 +178,13 @@ int Enable;
 		}
 	
 	@Override
+=======
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
 	public void onClick(View v) {
 		switch(v.getId())
 		{

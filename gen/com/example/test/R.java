@@ -8,10 +8,13 @@
 package com.example.test;
 
 public final class R {
+<<<<<<< HEAD
     public static final class array {
         public static final int countries=0x7f060000;
         public static final int menu=0x7f060001;
     }
+=======
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
     public static final class attr {
     }
     public static final class dimen {
@@ -32,6 +35,7 @@ public final class R {
         public static final int green=0x7f020004;
         public static final int grey=0x7f020005;
         public static final int header=0x7f020006;
+<<<<<<< HEAD
         public static final int ic_action_settings=0x7f020007;
         public static final int ic_lancher=0x7f020008;
         public static final int ic_launcher=0x7f020009;
@@ -64,10 +68,42 @@ public final class R {
         public static final int btnShow=0x7f090000;
         public static final int imageView1=0x7f090001;
         public static final int list=0x7f090003;
+=======
+        public static final int ic_lancher=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int logo=0x7f020009;
+        public static final int mail=0x7f02000a;
+        public static final int orange_strip=0x7f02000b;
+        public static final int red=0x7f02000c;
+        public static final int setting=0x7f02000d;
+        public static final int setting2=0x7f02000e;
+        public static final int setting_button=0x7f02000f;
+        public static final int small_strip=0x7f020010;
+    }
+    public static final class id {
+        public static final int M=0x7f080004;
+        public static final int Number1=0x7f080006;
+        public static final int Number2=0x7f080009;
+        public static final int Number3=0x7f08000c;
+        public static final int SC=0x7f080007;
+        public static final int SC2=0x7f08000a;
+        public static final int SC3=0x7f08000d;
+        public static final int SM=0x7f080008;
+        public static final int SM1=0x7f08000b;
+        public static final int SM2=0x7f08000e;
+        public static final int Save=0x7f08000f;
+        public static final int SetButton=0x7f080003;
+        public static final int TableLayout1=0x7f080005;
+        public static final int action_settings=0x7f080010;
+        public static final int btnBack=0x7f080002;
+        public static final int btnShow=0x7f080000;
+        public static final int imageView1=0x7f080001;
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int header=0x7f030001;
+<<<<<<< HEAD
         public static final int listitem=0x7f030002;
         public static final int main=0x7f030003;
         public static final int main_header=0x7f030004;
@@ -77,11 +113,23 @@ public final class R {
     public static final class menu {
         public static final int action_settings=0x7f080000;
         public static final int main=0x7f080001;
+=======
+        public static final int main_header=0x7f030002;
+        public static final int messagebox=0x7f030003;
+        public static final int settings=0x7f030004;
+    }
+    public static final class menu {
+        public static final int main=0x7f070000;
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+<<<<<<< HEAD
         public static final int footer=0x7f050002;
+=======
+        public static final int hello_world=0x7f050002;
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
     }
     public static final class style {
         /** 
@@ -105,10 +153,18 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
+<<<<<<< HEAD
         public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+=======
+        public static final int AppBaseTheme=0x7f060000;
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int AppTheme=0x7f060001;
+>>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
     }
 }
