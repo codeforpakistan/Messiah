@@ -3,7 +3,6 @@
 
     <string name="app_name">Messiah</string>
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
     <string name="footer">Add Contact</string>
 
     <string-array name="countries">
@@ -13,14 +12,8 @@
         <item>Mubassir</item>
     </string-array>
     <string-array name="menu">
-        <item>Edit Message</item>
         <item>Remove Contact</item>
-        <item>View Message</item>
+        <item>Edit Message</item>
     </string-array>
 
 </resources>
-=======
-    <string name="hello_world">Hello world!</string>
-
-</resources>
->>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e

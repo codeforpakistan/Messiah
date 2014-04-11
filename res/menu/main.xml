@@ -3,15 +3,10 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-<<<<<<< HEAD
         android:showAsAction="ifRoom"
         android:icon="@drawable/setting_button"
         android:title="@string/action_settings"/>
     
     
-=======
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
->>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
 
 </menu>

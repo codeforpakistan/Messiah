@@ -132,12 +132,7 @@ String strName = "";
 	
 	public void Startprocess() {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
 		Intent i = new Intent(android.content.Intent.ACTION_PICK);
-=======
-		Intent i = new
-				Intent(android.content.Intent.ACTION_PICK);
->>>>>>> 1aa9c04a3b5e8be01a4c72989bc99bf4cfb15e7e
 				i.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
 			int request_Code = 0;
 			startActivityForResult(i,request_Code);
