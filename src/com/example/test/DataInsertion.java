@@ -59,10 +59,9 @@ public class DataInsertion {
 		if (cur.moveToFirst()) {
 			do {
 
-				String name = cur.getString(cur.getColumnIndex("CONTACT_NAME"));
-				array[i] = name;
-				i++;
-			} while (cur.moveToNext());
+				array[i++]	 = cur.getString(cur.getColumnIndex("CONTACT_NAME"));
+				 
+							} while (cur.moveToNext());
 		}
 		cur.close();
 		return array;

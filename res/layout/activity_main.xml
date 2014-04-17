@@ -30,4 +30,10 @@
 
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/btnService"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:text="switch on accident detection" />
+
 </FrameLayout>

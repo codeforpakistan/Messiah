@@ -1,5 +1,6 @@
 package com.example.test;
 
+import com.crashlytics.android.Crashlytics;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -22,17 +23,19 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
-Button settings,btnShow;
+Button settings,btnShow,acc;
 String[] names;
 int Enable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Crashlytics.start(this);
 		setContentView(R.layout.activity_main);
 		
 		
-		
+		acc = (Button) findViewById(R.id.btnService);
+		acc.setOnClickListener(this);
 		settings = (Button) findViewById(R.id.SetButton);
 		btnShow = (Button) findViewById(R.id.btnShow);
 		btnShow.setOnClickListener(this);
@@ -158,6 +161,8 @@ int Enable;
 		case R.id.btnShow:
 			new Send().execute();
 			break;
+		case R.id.btnService:
+			startService(new Intent(MainActivity.this,AccidentService.class));
 		}
 	}
 	

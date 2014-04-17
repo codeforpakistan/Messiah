@@ -16,4 +16,7 @@
         <item>Edit Message</item>
     </string-array>
 
+    <string name="title_activity_accident_warning">AccidentWarning</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
