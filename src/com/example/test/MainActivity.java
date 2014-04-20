@@ -1,13 +1,23 @@
 package com.example.test;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 import com.crashlytics.android.Crashlytics;
+
+
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -20,12 +30,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 Button settings,btnShow,acc;
 String[] names;
 int Enable;
+String lat=null;
+String lon=null;
+AppLocationService appLocationService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +47,8 @@ int Enable;
 		Crashlytics.start(this);
 		setContentView(R.layout.activity_main);
 		
-		
+		appLocationService = new AppLocationService(
+				MainActivity.this);
 		acc = (Button) findViewById(R.id.btnService);
 		acc.setOnClickListener(this);
 		settings = (Button) findViewById(R.id.SetButton);
@@ -71,53 +86,33 @@ int Enable;
 	
 	public void SendSMS()
 	{
+		 
 		try{
-			double lat=0.0,longi=0.0;
-			
-			LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-			Criteria cri= new Criteria();
-			cri.setAccuracy(Criteria.ACCURACY_FINE);
-					
-			String bbb = locationManager.getBestProvider(cri, true);
-			Location myLocation = locationManager.getLastKnownLocation(bbb);
+			Location nwLocation = appLocationService
+					.getLocation(LocationManager.NETWORK_PROVIDER);
 
-			lat = myLocation.getLatitude();
-			longi = myLocation.getLongitude();
-			
-			String pinpoint = "http://www.maps.google.com/maps?q="+lat+","+longi;
-			
-			SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
-			int Contacts = 0;
-			
-			for(int i =0; i<3; i++)
-			{
-				String val = prefs.getString("contactNumber"+i, "");
-				if(!val.equals(""))
-				{
-					Contacts++;
-					names[i] = val;
-					Log.d("Name:", names[i]);
-				}
+			if (nwLocation != null) {
+				double latitude = nwLocation.getLatitude();
+				double longitude = nwLocation.getLongitude();
 				
-			}
+				lon = String.valueOf(longitude);
+				lat = String.valueOf(latitude);
+				String add = GetAddress(lat, lon);
+				Toast.makeText(
+						getApplicationContext(),
+						"Mobile Location (NW): \nLatitude: " + latitude
+								+ "\nLongitude: " + longitude + " " + add,
+						Toast.LENGTH_SHORT).show();
 			
-			String[] msgs = new String[3];
-			String number = "";
-			
-			
-			for(int i =0; i<Contacts; i++)
-			{
-				if(!names[i].equals(""))
-				{
-					number = names[i];
-					msgs[i] = prefs.getString(names[i]+"Mes", "");
-					SmsManager.getDefault().sendTextMessage(number, null, msgs[i] + "Im at:" + pinpoint, null, null);
-				}
-				
-			}
-			
-			
-			
+		}
+
+			String pinpoint = "http://www.maps.google.com/maps?q="+lat+","+lon;
+			String address = GetAddress(lat, lon);
+			DataInsertion obj = new DataInsertion();
+			String[] phonenumber = obj.getphonenumbers(getApplicationContext());
+			String[] messages = obj.getmessages(getApplicationContext());
+			for(int i = 0; i<= phonenumber.length;i++ )
+			SmsManager.getDefault().sendTextMessage(phonenumber[i], null, messages[i] + "Im at: " + address + " " + pinpoint, null, null);
 		}
 		catch(Exception ex)
 		{
@@ -159,13 +154,34 @@ int Enable;
 		switch(v.getId())
 		{
 		case R.id.btnShow:
-			new Send().execute();
+			//NWmethod();
+			SendSMS();
+			//new Send().execute();
 			break;
 		case R.id.btnService:
 			startService(new Intent(MainActivity.this,AccidentService.class));
 		}
 	}
 	
+	private void NWmethod() {
+		Location nwLocation = appLocationService
+				.getLocation(LocationManager.NETWORK_PROVIDER);
+
+		if (nwLocation != null) {
+			double latitude = nwLocation.getLatitude();
+			double longitude = nwLocation.getLongitude();
+			
+			lon = String.valueOf(longitude);
+			lat = String.valueOf(latitude);
+			String add = GetAddress(lat, lon);
+			Toast.makeText(
+					getApplicationContext(),
+					"Mobile Location (NW): \nLatitude: " + latitude
+							+ "\nLongitude: " + longitude + " " + add,
+					Toast.LENGTH_SHORT).show();
+		
+	}
+	}
 	private class Send extends AsyncTask<Void, Void, Void>
 	{
 		ProgressDialog dialog = new ProgressDialog(MainActivity.this);
@@ -194,7 +210,30 @@ int Enable;
 		
 		
 	}
-	
+	public String GetAddress(String lat, String lon)
+	{
+		Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
+		String ret = "";
+		try {
+			List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(lat), Double.parseDouble(lon), 1);
+			if(addresses != null) {
+				Address returnedAddress = addresses.get(0);
+				StringBuilder strReturnedAddress = new StringBuilder("Address:\n");
+				for(int i=0; i<returnedAddress.getMaxAddressLineIndex(); i++) {
+					strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+				}
+				ret = strReturnedAddress.toString();
+			}
+			else{
+				ret = "No Address returned!";
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = "Can't get Address!";
+		}
+		return ret;
+	}
 @Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
 	int action = event.getAction();

@@ -24,17 +24,6 @@ public class DataInsertion {
 		values.put("BODY", Message);
 		database.insert(Db.Table, "", values);
 		database.close();
-		// TEsting
-		Db = new DbHelper(ctx);
-		database = Db.getReadableDatabase();
-		Cursor cur = Db.query(database, "SELECT * FROM TBL_CONTACT");
-		cur.moveToFirst();
-		String body = cur.getString(cur.getColumnIndex("BODY"));
-		String phone = cur.getString(cur.getColumnIndex("PHONE_NUMBER"));
-		String name = cur.getString(cur.getColumnIndex("CONTACT_NAME"));
-		Toast.makeText(ctx, body + phone + name, Toast.LENGTH_SHORT).show();
-		cur.close();
-
 	}
 
 	public DataInsertion() {
@@ -46,6 +35,7 @@ public class DataInsertion {
 		database = Db.getWritableDatabase();
 		database.execSQL("UPDATE  TBL_CONTACT  SET BODY = '"+ message + "' WHERE CONTACT_NAME = '"+ name + "'");
 		Toast.makeText(ctx, "Message Updated", Toast.LENGTH_LONG).show();
+		database.close();
 		
 	}
 
@@ -63,6 +53,7 @@ public class DataInsertion {
 				 
 							} while (cur.moveToNext());
 		}
+		database.close();
 		cur.close();
 		return array;
 
@@ -77,9 +68,11 @@ public class DataInsertion {
 								+ name + "'");
 		int count = cur.getCount();
 		if (count > 0) {
-
+			database.close();
+			cur.close();
 			return false;
 		}
+		database.close();
 cur.close();
 		return true;
 	}
@@ -88,7 +81,7 @@ cur.close();
 		Db = new DbHelper(ctx);
 		database = Db.getWritableDatabase();
 		database.execSQL("DELETE FROM TBL_CONTACT WHERE CONTACT_NAME = '"+ listItemName + "'");
-		
+		database.close();
 		Toast.makeText(ctx, listItemName + "Deleted ", Toast.LENGTH_LONG).show();
 	
 	}
@@ -108,8 +101,48 @@ cur.close();
 				msg = cur.getString(cur.getColumnIndex("BODY"));
 			} while (cur.moveToNext());
 		}
+		database.close();
 		cur.close();
 		return msg;
 
 	}
+	public String[] getphonenumbers(Context ctx) {
+		Db = new DbHelper(ctx);
+		database = Db.getWritableDatabase();
+		Cursor cur = Db.query(database, "SELECT * FROM TBL_CONTACT");
+		String[] array = new String[cur.getCount()];
+		int i = 0;
+		cur.moveToFirst();
+		if (cur.moveToFirst()) {
+			do {
+
+				array[i++]	 = cur.getString(cur.getColumnIndex("PHONE_NUMBER"));
+				 
+							} while (cur.moveToNext());
+		}
+		database.close();
+		cur.close();
+		return array;
+
+	}
+	public String[] getmessages(Context ctx) {
+		Db = new DbHelper(ctx);
+		database = Db.getWritableDatabase();
+		Cursor cur = Db.query(database, "SELECT * FROM TBL_CONTACT");
+		String[] array = new String[cur.getCount()];
+		int i = 0;
+		cur.moveToFirst();
+		if (cur.moveToFirst()) {
+			do {
+
+				array[i++]	 = cur.getString(cur.getColumnIndex("BODY"));
+				 
+							} while (cur.moveToNext());
+		}
+		database.close();
+		cur.close();
+		return array;
+
+	}
+
 }
