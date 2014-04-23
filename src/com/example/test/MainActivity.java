@@ -29,12 +29,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
-Button settings,btnShow,acc;
+Button btnSafe,settings,btnShow,acc;
 String[] names;
 int Enable;
 String lat=null;
@@ -54,7 +57,14 @@ AppLocationService appLocationService;
 		settings = (Button) findViewById(R.id.SetButton);
 		btnShow = (Button) findViewById(R.id.btnShow);
 		btnShow.setOnClickListener(this);
-	
+		btnSafe = (Button) findViewById(R.id.btnSafe);
+		btnSafe.setOnClickListener(this);
+		final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+		animation.setDuration(250); // duration 250 milliseconds
+		animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+		animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+		animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+		btnShow.startAnimation(animation);
 		names = new String[3];
 		Enable = -1;
 //		SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
@@ -84,7 +94,7 @@ AppLocationService appLocationService;
 			super.onResume();
 		}
 	
-	public void SendSMS()
+	public void SendSMS(int type)
 	{
 		 
 		try{
@@ -105,14 +115,22 @@ AppLocationService appLocationService;
 						Toast.LENGTH_SHORT).show();
 			
 		}
-
+			
 			String pinpoint = "http://www.maps.google.com/maps?q="+lat+","+lon;
 			String address = GetAddress(lat, lon);
 			DataInsertion obj = new DataInsertion();
 			String[] phonenumber = obj.getphonenumbers(getApplicationContext());
 			String[] messages = obj.getmessages(getApplicationContext());
+			if(type == 1){
 			for(int i = 0; i<= phonenumber.length;i++ )
 			SmsManager.getDefault().sendTextMessage(phonenumber[i], null, messages[i] + "Im at: " + address + " " + pinpoint, null, null);
+			}
+			if(type == 2){
+				
+				for(int i = 0; i<= phonenumber.length;i++ )
+				SmsManager.getDefault().sendTextMessage(phonenumber[i], null,"I'm Safe and I'm at: " + address + " " + pinpoint, null, null);
+				
+			}
 		}
 		catch(Exception ex)
 		{
@@ -155,11 +173,16 @@ AppLocationService appLocationService;
 		{
 		case R.id.btnShow:
 			//NWmethod();
-			SendSMS();
+			v.clearAnimation();
+			SendSMS(1);
 			//new Send().execute();
 			break;
 		case R.id.btnService:
 			startService(new Intent(MainActivity.this,AccidentService.class));
+			break;
+		case R.id.btnSafe:
+			SendSMS(2);
+			break;
 		}
 	}
 	
@@ -195,7 +218,7 @@ AppLocationService appLocationService;
 		
 		@Override
 		protected Void doInBackground(Void... params) {
-			SendSMS();
+			//SendSMS();
 			return null;
 		}
 		
@@ -225,12 +248,12 @@ AppLocationService appLocationService;
 				ret = strReturnedAddress.toString();
 			}
 			else{
-				ret = "No Address returned!";
+				ret = null;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			ret = "Can't get Address!";
+			ret = null;
 		}
 		return ret;
 	}
