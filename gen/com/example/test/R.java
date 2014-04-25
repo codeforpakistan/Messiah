@@ -8,9 +8,13 @@
 package com.example.test;
 
 public final class R {
+    public static final class anim {
+        public static final int anim_in=0x7f040000;
+        public static final int anim_out=0x7f040001;
+    }
     public static final class array {
-        public static final int countries=0x7f070000;
-        public static final int menu=0x7f070001;
+        public static final int country_arrays=0x7f080000;
+        public static final int menu=0x7f080001;
     }
     public static final class attr {
     }
@@ -21,73 +25,99 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
         public static final int add=0x7f020000;
-        public static final int backgd=0x7f020001;
-        public static final int background=0x7f020002;
-        public static final int button_selection=0x7f020003;
-        public static final int green=0x7f020004;
-        public static final int grey=0x7f020005;
-        public static final int header=0x7f020006;
-        public static final int ic_action_settings=0x7f020007;
-        public static final int ic_lancher=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int logo=0x7f02000a;
-        public static final int mail=0x7f02000b;
-        public static final int orange_strip=0x7f02000c;
-        public static final int red=0x7f02000d;
-        public static final int setting=0x7f02000e;
-        public static final int setting2=0x7f02000f;
-        public static final int setting_button=0x7f020010;
-        public static final int small_strip=0x7f020011;
+        public static final int addimage=0x7f020001;
+        public static final int backgd=0x7f020002;
+        public static final int background=0x7f020003;
+        public static final int button_default_bg=0x7f020004;
+        public static final int button_selection=0x7f020005;
+        public static final int edittext_bottom_bg=0x7f020006;
+        public static final int edittext_top_bg=0x7f020007;
+        public static final int green=0x7f020008;
+        public static final int grey=0x7f020009;
+        public static final int header=0x7f02000a;
+        public static final int ic_action_settings=0x7f02000b;
+        public static final int ic_lancher=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
+        public static final int linearlayout_bg=0x7f02000e;
+        public static final int logo=0x7f02000f;
+        public static final int logo5=0x7f020010;
+        public static final int mail=0x7f020011;
+        public static final int ok_off=0x7f020012;
+        public static final int ok_pressed=0x7f020013;
+        public static final int ok_unpressed=0x7f020014;
+        public static final int orange_strip=0x7f020015;
+        public static final int panic_off=0x7f020016;
+        public static final int panic_pressed=0x7f020017;
+        public static final int panic_unpressed=0x7f020018;
+        public static final int password=0x7f020019;
+        public static final int red=0x7f02001a;
+        public static final int setting=0x7f02001b;
+        public static final int setting2=0x7f02001c;
+        public static final int setting_button=0x7f02001d;
+        public static final int small_strip=0x7f02001e;
+        public static final int user=0x7f02001f;
     }
     public static final class id {
-        public static final int M=0x7f0a0008;
-        public static final int Number1=0x7f0a000a;
-        public static final int Number2=0x7f0a000d;
-        public static final int Number3=0x7f0a0010;
-        public static final int SC=0x7f0a000b;
-        public static final int SC2=0x7f0a000e;
-        public static final int SC3=0x7f0a0011;
-        public static final int SM=0x7f0a000c;
-        public static final int SM1=0x7f0a000f;
-        public static final int SM2=0x7f0a0012;
-        public static final int Save=0x7f0a0013;
-        public static final int SetButton=0x7f0a0007;
-        public static final int TableLayout1=0x7f0a0009;
-        public static final int action_settings=0x7f0a0014;
-        public static final int btnAddContact=0x7f0a0006;
-        public static final int btnBack=0x7f0a0004;
-        public static final int btnSafe=0x7f0a0002;
-        public static final int btnService=0x7f0a0000;
-        public static final int btnShow=0x7f0a0001;
-        public static final int imageView1=0x7f0a0003;
-        public static final int list=0x7f0a0005;
+        public static final int SetButton=0x7f0b0019;
+        public static final int action_settings=0x7f0b001a;
+        public static final int btnAddContact=0x7f0b0018;
+        public static final int btnBack=0x7f0b0016;
+        public static final int btnSafe=0x7f0b0005;
+        public static final int btnService=0x7f0b0003;
+        public static final int btnShow=0x7f0b0004;
+        public static final int btnSignIn=0x7f0b0009;
+        public static final int button1=0x7f0b0015;
+        public static final int eTGID=0x7f0b0001;
+        public static final int editText1=0x7f0b000a;
+        public static final int editText2=0x7f0b000c;
+        public static final int editText3=0x7f0b000e;
+        public static final int editText4=0x7f0b0010;
+        public static final int editText5=0x7f0b0012;
+        public static final int etPassSignIn=0x7f0b0008;
+        public static final int etUserNameSignIn=0x7f0b0007;
+        public static final int imageView1=0x7f0b0000;
+        public static final int linearLayout1=0x7f0b0006;
+        public static final int list=0x7f0b0017;
+        public static final int spinner1=0x7f0b0014;
+        public static final int textView1=0x7f0b0002;
+        public static final int textView2=0x7f0b000b;
+        public static final int textView3=0x7f0b000d;
+        public static final int textView4=0x7f0b000f;
+        public static final int textView5=0x7f0b0011;
+        public static final int textView6=0x7f0b0013;
     }
     public static final class layout {
         public static final int activity_accident_warning=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int header=0x7f030002;
-        public static final int listitem=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int main_header=0x7f030005;
-        public static final int messagebox=0x7f030006;
-        public static final int settings=0x7f030007;
+        public static final int activity_get_image=0x7f030001;
+        public static final int activity_grievance_id=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_sign_in_screen=0x7f030004;
+        public static final int activity_verification=0x7f030005;
+        public static final int header=0x7f030006;
+        public static final int listitem=0x7f030007;
+        public static final int main=0x7f030008;
+        public static final int main_header=0x7f030009;
     }
     public static final class menu {
-        public static final int accident_warning=0x7f090000;
-        public static final int action_settings=0x7f090001;
-        public static final int main=0x7f090002;
+        public static final int accident_warning=0x7f0a0000;
+        public static final int action_settings=0x7f0a0001;
+        public static final int get_image=0x7f0a0002;
+        public static final int grievance_id=0x7f0a0003;
+        public static final int login=0x7f0a0004;
+        public static final int main=0x7f0a0005;
+        public static final int verification=0x7f0a0006;
     }
     public static final class raw {
-        public static final int alarm=0x7f040000;
+        public static final int alarm=0x7f050000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050002;
-        public static final int app_name=0x7f050001;
+        public static final int action_settings=0x7f060002;
+        public static final int app_name=0x7f060001;
         /** 
   This file is automatically generated by Crashlytics to uniquely 
   identify individual builds of your Android application.
@@ -95,10 +125,15 @@ public final class R {
   Do NOT modify, delete, or commit to source control!
 
          */
-        public static final int com_crashlytics_android_build_id=0x7f050000;
-        public static final int footer=0x7f050003;
-        public static final int hello_world=0x7f050005;
-        public static final int title_activity_accident_warning=0x7f050004;
+        public static final int com_crashlytics_android_build_id=0x7f060000;
+        public static final int country_prompt=0x7f060004;
+        public static final int footer=0x7f060003;
+        public static final int hello_world=0x7f060006;
+        public static final int title_activity_accident_warning=0x7f060005;
+        public static final int title_activity_get_image=0x7f060009;
+        public static final int title_activity_grievance_id=0x7f060008;
+        public static final int title_activity_login=0x7f060007;
+        public static final int title_activity_verification=0x7f06000a;
     }
     public static final class style {
         /** 
@@ -122,10 +157,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f090001;
     }
 }
