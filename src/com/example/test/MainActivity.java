@@ -12,13 +12,16 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.drawable.Drawable;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -52,6 +55,7 @@ public class MainActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_main);
 		detector = new SimpleGestureFilter(this, this);
 		appLocationService = new AppLocationService(MainActivity.this);
+		//checkcontacts();
 		acc = (Button) findViewById(R.id.btnService);
 		acc.setOnClickListener(this);
 		settings = (Button) findViewById(R.id.SetButton);
@@ -73,8 +77,8 @@ public class MainActivity extends Activity implements OnClickListener,
 													// end so the button will
 													// fade back in
 		btnShow.startAnimation(animation);
-		names = new String[3];
-		Enable = -1;
+		//names = new String[3];
+		//Enable = -1;
 		// SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
 		// String val = prefs.getString("contactNumber"+1, "");
 		// if(val.equals(""))
@@ -86,9 +90,27 @@ public class MainActivity extends Activity implements OnClickListener,
 
 	}
 
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+	private void checkcontacts() {
+		DataInsertion obj = new DataInsertion();
+		int count = obj.countcontacts(getApplicationContext());
+		if(count == 0){
+			
+			btnSafe.setBackground(getResources().getDrawable(R.drawable.ok_off));
+			btnShow.setBackground(getResources().getDrawable(R.drawable.panic_off));
+			
+		}
+		else{
+			btnSafe.setBackground(getResources().getDrawable(R.drawable.ok_unpressed));
+			btnShow.setBackground(getResources().getDrawable(R.drawable.panic_unpressed));
+			
+		}
+		
+	}
+
 	@Override
 	protected void onResume() {
-
+//checkcontacts();
 		// SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
 		// String val = prefs.getString("contactNumber"+1, "");
 		// if(!val.equals(""))
@@ -122,6 +144,7 @@ public class MainActivity extends Activity implements OnClickListener,
 
 			String pinpoint = "http://www.maps.google.com/maps?q=" + lat + ","
 					+ lon;
+			Drawable dr;
 			String address = GetAddress(lat, lon);
 			DataInsertion obj = new DataInsertion();
 			String[] phonenumber = obj.getphonenumbers(getApplicationContext());
@@ -132,6 +155,8 @@ public class MainActivity extends Activity implements OnClickListener,
 							null,
 							messages[i] + "Im at: " + address + " " + pinpoint,
 							null, null);
+				dr = getResources().getDrawable(R.drawable.panic_unpressed);
+				btnShow.setBackgroundDrawable(dr);
 			}
 			if (type == 2) {
 
@@ -140,6 +165,8 @@ public class MainActivity extends Activity implements OnClickListener,
 							null,
 							"I'm Safe and I'm at: " + address + " " + pinpoint,
 							null, null);
+				 dr = getResources().getDrawable(R.drawable.ok_unpressed);
+					btnSafe.setBackgroundDrawable(dr);
 
 			}
 		} catch (Exception ex) {
@@ -178,17 +205,23 @@ public class MainActivity extends Activity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
+		Drawable dr;
 		switch (v.getId()) {
 		case R.id.btnShow:
 			// NWmethod();
 			v.clearAnimation();
+			dr = getResources().getDrawable(R.drawable.panic_pressed);
+			btnShow.setBackgroundDrawable(dr);
 			SendSMS(1);
 			// new Send().execute();
 			break;
 		case R.id.btnService:
+			
 			startService(new Intent(MainActivity.this, AccidentService.class));
 			break;
 		case R.id.btnSafe:
+			 dr = getResources().getDrawable(R.drawable.ok_pressed);
+			btnSafe.setBackgroundDrawable(dr);
 			SendSMS(2);
 			break;
 		}
@@ -213,7 +246,6 @@ public class MainActivity extends Activity implements OnClickListener,
 
 		}
 	}
-
 	private class Send extends AsyncTask<Void, Void, Void> {
 		ProgressDialog dialog = new ProgressDialog(MainActivity.this);
 

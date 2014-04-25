@@ -45,15 +45,22 @@ public final class R {
         public static final int ic_launcher=0x7f02000d;
         public static final int linearlayout_bg=0x7f02000e;
         public static final int logo=0x7f02000f;
-        public static final int mail=0x7f020010;
-        public static final int orange_strip=0x7f020011;
-        public static final int password=0x7f020012;
-        public static final int red=0x7f020013;
-        public static final int setting=0x7f020014;
-        public static final int setting2=0x7f020015;
-        public static final int setting_button=0x7f020016;
-        public static final int small_strip=0x7f020017;
-        public static final int user=0x7f020018;
+        public static final int logo5=0x7f020010;
+        public static final int mail=0x7f020011;
+        public static final int ok_off=0x7f020012;
+        public static final int ok_pressed=0x7f020013;
+        public static final int ok_unpressed=0x7f020014;
+        public static final int orange_strip=0x7f020015;
+        public static final int panic_off=0x7f020016;
+        public static final int panic_pressed=0x7f020017;
+        public static final int panic_unpressed=0x7f020018;
+        public static final int password=0x7f020019;
+        public static final int red=0x7f02001a;
+        public static final int setting=0x7f02001b;
+        public static final int setting2=0x7f02001c;
+        public static final int setting_button=0x7f02001d;
+        public static final int small_strip=0x7f02001e;
+        public static final int user=0x7f02001f;
     }
     public static final class id {
         public static final int SetButton=0x7f0b0019;

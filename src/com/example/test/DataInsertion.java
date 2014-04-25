@@ -144,5 +144,18 @@ cur.close();
 		return array;
 
 	}
+	public int countcontacts(Context ctx){
+		Db = new DbHelper(ctx);
+		database = Db.getWritableDatabase();
+		Cursor cur = Db.query(database, "SELECT * FROM TBL_CONTACT");
+		int count = cur.getCount();
+		cur.close();
+		database.close();
+		return count;
+		
+		
+		
+		
+	}
 
 }
