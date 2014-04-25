@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.test.ListViewDemoActivity"
+            android:name="com.example.test.ListViewContactActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.ListViewDemoActivity" />
