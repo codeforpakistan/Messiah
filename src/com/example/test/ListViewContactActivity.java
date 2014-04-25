@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class ListViewDemoActivity extends Activity {
+public class ListViewContactActivity extends Activity {
 	String phoneName = null;
 	String phoneNumber = null;
 	String message = null;

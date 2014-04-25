@@ -154,7 +154,7 @@ AppLocationService appLocationService;
 		    // action with ID action_refresh was selected
 		    case R.id.action_settings:
 		    	//this is new way of starting settings Activity
-		    	Intent s = new Intent(MainActivity.this , ListViewDemoActivity.class);
+		    	Intent s = new Intent(MainActivity.this , ListViewContactActivity.class);
 		    	startActivity(s);
 		    	
 		    	//this was old way starting settings activity
