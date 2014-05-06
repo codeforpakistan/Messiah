@@ -35,16 +35,19 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener,
-		SimpleGestureListener {
+public class MainActivity extends Activity implements OnClickListener,SimpleGestureListener {
 	Button btnSafe, settings, btnShow, acc;
+	ImageView ADM;
 	String[] names;
 	int Enable;
 	String lat = null;
 	String lon = null;
+	Boolean ADMstatus = true;
+	Drawable dr1;
 	AppLocationService appLocationService;
 	private SimpleGestureFilter detector;
 
@@ -56,9 +59,35 @@ public class MainActivity extends Activity implements OnClickListener,
 		detector = new SimpleGestureFilter(this, this);
 		appLocationService = new AppLocationService(MainActivity.this);
 		//checkcontacts();
-		acc = (Button) findViewById(R.id.btnService);
-		acc.setOnClickListener(this);
-		settings = (Button) findViewById(R.id.SetButton);
+		//dr1 = getResources().getDrawable(R.drawable.on);
+		//ADM.setImageDrawable(dr1);
+	
+		ADM = (ImageView) findViewById(R.id.IVADM);
+		ADM.setImageResource(R.drawable.off);	 
+		final Intent i = new Intent(MainActivity.this, AccidentService.class);
+		ADM.setOnClickListener(new View.OnClickListener() {
+			
+		
+			@Override
+			public void onClick(View v) {
+				Drawable dr;
+				if(ADMstatus){
+					ADM.setImageResource(R.drawable.on);
+				startService(i);
+				Toast.makeText(getApplicationContext(), "Accident Detection Mode ON", Toast.LENGTH_SHORT).show();
+				ADMstatus = false;
+				}
+				else{
+					ADMstatus = true;
+					ADM.setImageResource(R.drawable.off);
+					stopService(i);
+					Toast.makeText(getApplicationContext(), "Accident Detection Mode OFF", Toast.LENGTH_SHORT).show();
+				}
+				
+			}
+		});
+		//acc.setOnClickListener(this);
+	//settings = (Button) findViewById(R.id.SetButton);
 		btnShow = (Button) findViewById(R.id.btnShow);
 		btnShow.setOnClickListener(this);
 		btnSafe = (Button) findViewById(R.id.btnSafe);
@@ -76,17 +105,8 @@ public class MainActivity extends Activity implements OnClickListener,
 		animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the
 													// end so the button will
 													// fade back in
-		btnShow.startAnimation(animation);
-		//names = new String[3];
-		//Enable = -1;
-		// SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
-		// String val = prefs.getString("contactNumber"+1, "");
-		// if(val.equals(""))
-		// {
-		// btnShow.setEnabled(false);
-		// Toast.makeText(this, "Please set the Settings for the Application",
-		// Toast.LENGTH_LONG).show();
-		// }
+	//btnShow.startAnimation(animation);
+		
 
 	}
 
@@ -94,17 +114,7 @@ public class MainActivity extends Activity implements OnClickListener,
 	private void checkcontacts() {
 		DataInsertion obj = new DataInsertion();
 		int count = obj.countcontacts(getApplicationContext());
-		if(count == 0){
-			
-			btnSafe.setBackground(getResources().getDrawable(R.drawable.ok_off));
-			btnShow.setBackground(getResources().getDrawable(R.drawable.panic_off));
-			
-		}
-		else{
-			btnSafe.setBackground(getResources().getDrawable(R.drawable.ok_unpressed));
-			btnShow.setBackground(getResources().getDrawable(R.drawable.panic_unpressed));
-			
-		}
+		
 		
 	}
 
@@ -155,8 +165,7 @@ public class MainActivity extends Activity implements OnClickListener,
 							null,
 							messages[i] + "Im at: " + address + " " + pinpoint,
 							null, null);
-				dr = getResources().getDrawable(R.drawable.panic_unpressed);
-				btnShow.setBackgroundDrawable(dr);
+				
 			}
 			if (type == 2) {
 
@@ -165,8 +174,7 @@ public class MainActivity extends Activity implements OnClickListener,
 							null,
 							"I'm Safe and I'm at: " + address + " " + pinpoint,
 							null, null);
-				 dr = getResources().getDrawable(R.drawable.ok_unpressed);
-					btnSafe.setBackgroundDrawable(dr);
+				
 
 			}
 		} catch (Exception ex) {
@@ -205,23 +213,15 @@ public class MainActivity extends Activity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		Drawable dr;
+		
 		switch (v.getId()) {
 		case R.id.btnShow:
 			// NWmethod();
 			v.clearAnimation();
-			dr = getResources().getDrawable(R.drawable.panic_pressed);
-			btnShow.setBackgroundDrawable(dr);
 			SendSMS(1);
 			// new Send().execute();
 			break;
-		case R.id.btnService:
-			
-			startService(new Intent(MainActivity.this, AccidentService.class));
-			break;
 		case R.id.btnSafe:
-			 dr = getResources().getDrawable(R.drawable.ok_pressed);
-			btnSafe.setBackgroundDrawable(dr);
 			SendSMS(2);
 			break;
 		}
