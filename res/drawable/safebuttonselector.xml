@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_focused="true" 
+      <item android:state_focused="true" 
     	  android:state_pressed="false" 
-    	  android:drawable="@drawable/emergency" />
+    	  android:drawable="@drawable/safe" />
    
     <item android:state_focused="false" 
     	  android:state_pressed="true"
-	  android:drawable="@drawable/emergencypushed" />
-    <item android:drawable="@drawable/emergency"  />
+	  android:drawable="@drawable/safepushed" />
+    <item android:drawable="@drawable/safe"  />
 
 </selector>

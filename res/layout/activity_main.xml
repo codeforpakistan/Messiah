@@ -2,40 +2,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background" android:weightSum="100" >
+    android:background="@drawable/backgroud"
+    android:weightSum="100"
+    tools:context=".MainActivity" >
 
     <!-- <include layout="@layout/main_header" /> -->
 
-    <Button
-        android:id="@+id/btnService"
-        android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:text="switch on accident detection" />
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="408dp"
-        android:layout_marginTop="55dip" >
+        android:layout_marginTop="55dip"
+        android:orientation="vertical" >
 
         <Button
             android:id="@+id/btnShow"
-            android:layout_width="200dp"
+            android:layout_width="178dp"
             android:layout_height="200dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:onClick="onClick"
-            android:background="@drawable/panic_unpressed" />
+            android:layout_marginLeft="65dp"
+            android:background="@drawable/button_selection"
+             />
 
         <Button
             android:id="@+id/btnSafe"
-            android:layout_width="200dp"
+            android:layout_width="178dp"
             android:layout_height="200dp"
-            android:layout_alignLeft="@+id/btnShow"
-            android:layout_below="@+id/btnShow"
-            android:onClick="onClick"
-            android:background="@drawable/ok_unpressed" />
+            android:layout_marginLeft="65dp"
+            android:background="@drawable/safebuttonselector"
+            />
 
-    </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:text="Accident Detection Mode"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/IVADM"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+         />
 
 </FrameLayout>

@@ -40,7 +40,9 @@ public class AccidentWarning extends Activity {
 	private void notification() {
 	mp.setLooping(true);
 	mp.start();
+	
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+	
 		alert.setTitle("Emergeny Message"); // Set Alert dialog title
 											// here
 		 alert.setMessage("Is everything OK?"); 
@@ -64,8 +66,10 @@ public class AccidentWarning extends Activity {
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,
 							int whichButton) {
-						// Canceled.
-					
+						mp.stop();
+						SendSMS();
+						
+						AccidentWarning.this.finish();
 						
 					}
 				}); // End of alert.setNegativeButton
