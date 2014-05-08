@@ -6,7 +6,7 @@
     <string name="footer">Add Contact</string>
  <string name="country_prompt">Choose a country</string>
     <string-array name="country_arrays">
-        <item>Injurred</item>
+        <item>Injured</item>
         <item>Dead States</item>
         <item>Fire</item>
         <item>House Damage (Partial)</item>

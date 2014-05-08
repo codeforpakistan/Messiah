@@ -19,7 +19,9 @@
             android:id="@+id/btnShow"
             android:layout_width="178dp"
             android:layout_height="200dp"
-            android:layout_marginLeft="65dp"
+           
+            android:onClick="onClick"
+            android:layout_gravity="center"
             android:background="@drawable/button_selection"
              />
 
@@ -27,7 +29,7 @@
             android:id="@+id/btnSafe"
             android:layout_width="178dp"
             android:layout_height="200dp"
-            android:layout_marginLeft="65dp"
+          android:layout_gravity="center"
             android:background="@drawable/safebuttonselector"
             />
 

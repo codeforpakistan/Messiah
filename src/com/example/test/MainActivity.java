@@ -39,7 +39,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener,SimpleGestureListener {
+public class MainActivity extends Activity implements OnClickListener,
+		SimpleGestureListener {
 	Button btnSafe, settings, btnShow, acc;
 	ImageView ADM;
 	String[] names;
@@ -49,6 +50,7 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 	Boolean ADMstatus = true;
 	Drawable dr1;
 	AppLocationService appLocationService;
+	Context mcontext;
 	private SimpleGestureFilter detector;
 
 	@Override
@@ -56,77 +58,62 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 		super.onCreate(savedInstanceState);
 		Crashlytics.start(this);
 		setContentView(R.layout.activity_main);
+		mcontext = MainActivity.this;
 		detector = new SimpleGestureFilter(this, this);
 		appLocationService = new AppLocationService(MainActivity.this);
-		//checkcontacts();
-		//dr1 = getResources().getDrawable(R.drawable.on);
-		//ADM.setImageDrawable(dr1);
-	
+		// checkcontacts();
+		// dr1 = getResources().getDrawable(R.drawable.on);
+		// ADM.setImageDrawable(dr1);
+
 		ADM = (ImageView) findViewById(R.id.IVADM);
-		ADM.setImageResource(R.drawable.off);	 
+		ADM.setImageResource(R.drawable.off);
 		final Intent i = new Intent(MainActivity.this, AccidentService.class);
 		ADM.setOnClickListener(new View.OnClickListener() {
-			
-		
+
 			@Override
 			public void onClick(View v) {
 				Drawable dr;
-				if(ADMstatus){
+				if (ADMstatus) {
 					ADM.setImageResource(R.drawable.on);
-				startService(i);
-				Toast.makeText(getApplicationContext(), "Accident Detection Mode ON", Toast.LENGTH_SHORT).show();
-				ADMstatus = false;
-				}
-				else{
+					startService(i);
+					Toast.makeText(getApplicationContext(),
+							"Accident Detection Mode ON", Toast.LENGTH_SHORT)
+							.show();
+					ADMstatus = false;
+				} else {
 					ADMstatus = true;
 					ADM.setImageResource(R.drawable.off);
 					stopService(i);
-					Toast.makeText(getApplicationContext(), "Accident Detection Mode OFF", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),
+							"Accident Detection Mode OFF", Toast.LENGTH_SHORT)
+							.show();
 				}
-				
+
 			}
 		});
-		//acc.setOnClickListener(this);
-	//settings = (Button) findViewById(R.id.SetButton);
+		// acc.setOnClickListener(this);
+		// settings = (Button) findViewById(R.id.SetButton);
 		btnShow = (Button) findViewById(R.id.btnShow);
 		btnShow.setOnClickListener(this);
 		btnSafe = (Button) findViewById(R.id.btnSafe);
 		btnSafe.setOnClickListener(this);
-		final Animation animation = new AlphaAnimation(1, 0); // Change alpha
-																// from fully
-																// visible to
-																// invisible
-		animation.setDuration(250); // duration 250 milliseconds
-		animation.setInterpolator(new LinearInterpolator()); // do not alter
-																// animation
-																// rate
-		animation.setRepeatCount(Animation.INFINITE); // Repeat animation
-														// infinitely
-		animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the
-													// end so the button will
-													// fade back in
-	//btnShow.startAnimation(animation);
-		
 
-	}
+		/*
+		 * this is code for blinking button final Animation animation = new
+		 * AlphaAnimation(1, 0); // Change alpha // from fully // visible to //
+		 * invisible animation.setDuration(250); // duration 250 milliseconds
+		 * animation.setInterpolator(new LinearInterpolator()); // do not alter
+		 * // animation // rate animation.setRepeatCount(Animation.INFINITE); //
+		 * Repeat animation // infinitely
+		 * animation.setRepeatMode(Animation.REVERSE); // Reverse animation at
+		 * the // end so the button will // fade back in
+		 * //btnShow.startAnimation(animation);
+		 */
 
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	private void checkcontacts() {
-		DataInsertion obj = new DataInsertion();
-		int count = obj.countcontacts(getApplicationContext());
-		
-		
 	}
 
 	@Override
 	protected void onResume() {
-//checkcontacts();
-		// SharedPreferences prefs = getSharedPreferences("N1", MODE_PRIVATE);
-		// String val = prefs.getString("contactNumber"+1, "");
-		// if(!val.equals(""))
-		// {
-		// btnShow.setEnabled(true);
-		// }
 
 		super.onResume();
 	}
@@ -134,8 +121,7 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 	public void SendSMS(int type) {
 
 		try {
-			Location nwLocation = appLocationService
-					.getLocation(LocationManager.NETWORK_PROVIDER);
+			Location nwLocation = NWmethod();
 
 			if (nwLocation != null) {
 				double latitude = nwLocation.getLatitude();
@@ -165,7 +151,7 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 							null,
 							messages[i] + "Im at: " + address + " " + pinpoint,
 							null, null);
-				
+
 			}
 			if (type == 2) {
 
@@ -174,7 +160,6 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 							null,
 							"I'm Safe and I'm at: " + address + " " + pinpoint,
 							null, null);
-				
 
 			}
 		} catch (Exception ex) {
@@ -213,12 +198,13 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 
 	@Override
 	public void onClick(View v) {
-		
+
 		switch (v.getId()) {
 		case R.id.btnShow:
 			// NWmethod();
-			v.clearAnimation();
+			// v.clearAnimation();
 			SendSMS(1);
+			// NWmethod();
 			// new Send().execute();
 			break;
 		case R.id.btnSafe:
@@ -227,25 +213,36 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 		}
 	}
 
-	private void NWmethod() {
-		Location nwLocation = appLocationService
-				.getLocation(LocationManager.NETWORK_PROVIDER);
+	private Location NWmethod() {
+		boolean gps_enabled = false;
+		boolean network_enabled = false;
 
-		if (nwLocation != null) {
-			double latitude = nwLocation.getLatitude();
-			double longitude = nwLocation.getLongitude();
+		LocationManager lm = (LocationManager) mcontext
+				.getSystemService(Context.LOCATION_SERVICE);
 
-			lon = String.valueOf(longitude);
-			lat = String.valueOf(latitude);
-			String add = GetAddress(lat, lon);
-			Toast.makeText(
-					getApplicationContext(),
-					"Mobile Location (NW): \nLatitude: " + latitude
-							+ "\nLongitude: " + longitude + " " + add,
-					Toast.LENGTH_SHORT).show();
+		gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		network_enabled = lm
+				.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+		Location net_loc = null, gps_loc = null, finalLoc = null;
+
+		if (gps_enabled)
+			gps_loc = appLocationService
+					.getLocation(LocationManager.GPS_PROVIDER);
+		if (network_enabled)
+			net_loc = appLocationService
+					.getLocation(LocationManager.NETWORK_PROVIDER);
+
+		if (gps_loc != null) {
+			finalLoc = gps_loc;
+
+		} else if (net_loc != null) {
+			finalLoc = net_loc;
 
 		}
+		return finalLoc;
 	}
+
 	private class Send extends AsyncTask<Void, Void, Void> {
 		ProgressDialog dialog = new ProgressDialog(MainActivity.this);
 
@@ -319,26 +316,26 @@ public class MainActivity extends Activity implements OnClickListener,SimpleGest
 			return super.dispatchKeyEvent(event);
 		}
 	}
-@Override
-public boolean dispatchTouchEvent(MotionEvent me) {
-	this.detector.onTouchEvent(me);
-	return super.dispatchTouchEvent(me);
-}
+
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent me) {
+		this.detector.onTouchEvent(me);
+		return super.dispatchTouchEvent(me);
+	}
+
 	@Override
 	public void onSwipe(int direction) {
 		switch (direction) {
 
 		case SimpleGestureFilter.SWIPE_RIGHT:
-			
+
 			break;
 		case SimpleGestureFilter.SWIPE_LEFT:
-			startActivity(new Intent(MainActivity.this,LoginActivity.class));
-						
-			
-			break;
-			
-		}
+			startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
+			break;
+
+		}
 
 	}
 
