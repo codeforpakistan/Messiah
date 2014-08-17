@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background= "#ECF0F1"
+    >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_x="135dp"
+        android:layout_y="11dp"
+        android:src="@drawable/settings" />
+    
+  <ImageView
+     android:id="@+id/imageView2"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_x="95dp"
+     android:layout_y="80dp"
+     android:src="@drawable/arrow" />
+    
+    <ExpandableListView
+		android:id="@android:id/list" 
+	    android:layout_width="300dp" 
+	    android:layout_height="250dp"
+	    android:layout_x="10dp"
+        android:layout_y="100dp"
+        android:listSelector="@android:color/transparent"
+        android:background="@drawable/rounded_corner" >
+    </ExpandableListView>
+ <!-- 
+ <ListView
+		android:id="@+id/list"  
+	    android:layout_width="250dp" 
+	    android:layout_height="250dp"
+	    android:layout_x="35dp"
+        android:layout_y="100dp"
+        android:background="@drawable/rounded_corner"
+        android:entries="@array/sports_array"
+        />
+-->
+ 
+</AbsoluteLayout>

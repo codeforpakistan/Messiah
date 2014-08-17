@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_x="30dp"
+        android:layout_y="0dp"
+        android:background="@drawable/rounded_corner"
+        android:text="Test...." />
+
+</AbsoluteLayout>
