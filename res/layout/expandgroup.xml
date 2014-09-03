@@ -11,6 +11,6 @@
         android:layout_x="30dp"
         android:layout_y="0dp"
         android:background="@drawable/rounded_corner"
-        android:text="Test...." />
+        android:text="" />
 
 </AbsoluteLayout>

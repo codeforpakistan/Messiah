@@ -21,15 +21,15 @@
      android:layout_y="80dp"
      android:src="@drawable/arrow" />
     
-    <ExpandableListView
-		android:id="@android:id/list" 
+    <ListView
+		android:id="@+id/Settingslist" 
 	    android:layout_width="300dp" 
 	    android:layout_height="250dp"
 	    android:layout_x="10dp"
         android:layout_y="100dp"
         android:listSelector="@android:color/transparent"
         android:background="@drawable/rounded_corner" >
-    </ExpandableListView>
+    </ListView>
  <!-- 
  <ListView
 		android:id="@+id/list"  

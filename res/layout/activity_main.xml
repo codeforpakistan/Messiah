@@ -42,12 +42,12 @@
         android:background="@drawable/settings" />
 
     <Button
-        android:id="@+id/btnSpeedDial"
+        android:id="@+id/btnContact"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_x="200dp"
         android:layout_y="329dp"
-        android:background="@drawable/speeddial" />
+        android:background="@drawable/contact" />
 
     <TextView
         android:id="@+id/textView1"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_x="188dp"
         android:layout_y="380dp"
-        android:text="Speed Dial"
+        android:text="Contacts"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </AbsoluteLayout>

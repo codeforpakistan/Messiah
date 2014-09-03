@@ -3,10 +3,16 @@ package com.CFP.messiah;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -29,14 +35,12 @@ public class MainActivity extends Activity implements OnClickListener {
 	private int mProgressStatus = 0;
 	String lat = null;
 	String lon = null;
-
 	// final GoogleAnalyticsTracker tracker =
 	// GoogleAnalyticsTracker.getInstance();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-
+		setContentView(R.layout.activity_main); 
 		// tracker.startNewSession("UA-50966088-1", this);
 		progBar = (ProgressBar) findViewById(R.id.progressBar1);
 		try {
@@ -44,7 +48,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			sms.setOnClickListener(this);
 			maps = (Button) findViewById(R.id.btnMaps);
 			maps.setOnClickListener(this);
-			speeddial = (Button) findViewById(R.id.btnSpeedDial);
+			speeddial = (Button) findViewById(R.id.btnContact);
 			speeddial.setOnClickListener(this);
 			settings = (Button) findViewById(R.id.btnSettings);
 			settings.setOnClickListener(this);
@@ -103,10 +107,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btnSMS:
 			DataInsertion obj = new DataInsertion();
 			int count = obj.countcontacts(getApplicationContext());
-			if(count>0)
-			Send();
+			if (count > 0)
+				Send();
 			else
-				Toast.makeText(getApplicationContext(), "No Contact Found", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "No Contact Found",
+						Toast.LENGTH_LONG).show();
 			// tracker.trackEvent(
 			// "Button", // Category, i.e. Player Buttons
 			// "HELP", // Action, i.e. Play
@@ -114,7 +119,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			// 3);
 			break;
 		case R.id.btnMaps:
+			
+			
+			if (CheckNetwork.isInternetAvailable(MainActivity.this)){
 			startActivity(new Intent(MainActivity.this, ImplementMaps.class));
+			}
 			// tracker.trackEvent(
 			// "Button", // Category, i.e. Player Buttons
 			// "MAPS", // Action, i.e. Play
@@ -129,8 +138,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			// "clicked", // Label i.e. Play
 			// 1);
 			break;
-		case R.id.btnSpeedDial:
-			startActivity(new Intent(MainActivity.this, SpeedDialActivity.class));
+		case R.id.btnContact:
+			startActivity(new Intent(MainActivity.this, MessiahContacts.class));
 			// tracker.trackEvent(
 			// "Button", // Category, i.e. Player Buttons
 			// "Speed Dial", // Action, i.e. Play
@@ -161,13 +170,17 @@ public class MainActivity extends Activity implements OnClickListener {
 			DataInsertion obj = new DataInsertion();
 			String[] phonenumber = obj.getphonenumbers(getApplicationContext());
 			String[] messages = obj.getmessages(getApplicationContext());
-			try{
-			for (int i = 0; i < phonenumber.length; i++)
-				SmsManager.getDefault().sendTextMessage(phonenumber[i], null,
-						messages[i] + " Im at: " + " " + pinpoint + address,
-						null, null);}catch(ArrayIndexOutOfBoundsException e){
-							Log.i("error of array", e.toString());
-						}
+			try {
+				for (int i = 0; i < phonenumber.length; i++)
+					SmsManager.getDefault()
+							.sendTextMessage(
+									phonenumber[i],
+									null,
+									messages[i] + " Im at: " + " " + pinpoint
+											+ address, null, null);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				Log.i("error of array", e.toString());
+			}
 		}
 
 	}
@@ -241,5 +254,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
+
 
 }

@@ -147,16 +147,14 @@ public class DataInsertion {
 
 	public String[] getphonenumbers(Context ctx) {
 		Db = new DbHelper(ctx);
-		database = Db.getWritableDatabase();
+		database = Db.getReadableDatabase();
 		Cursor cur = Db.query(database, "SELECT * FROM TBL_CONTACT");
 		String[] array = new String[cur.getCount()];
 		int i = 0;
 		cur.moveToFirst();
 		if (cur.moveToFirst()) {
 			do {
-
 				array[i++] = cur.getString(cur.getColumnIndex("PHONE_NUMBER"));
-
 			} while (cur.moveToNext());
 		}
 		database.close();

@@ -19,7 +19,7 @@
      android:layout_y="65dp"
      android:src="@drawable/arrow" />
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/Contactlist"
         android:layout_width="300dp"
         android:layout_height="320dp"
         android:layout_x="10dp"

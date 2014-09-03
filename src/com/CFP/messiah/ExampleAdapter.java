@@ -87,15 +87,15 @@ public class ExampleAdapter implements ExpandableListAdapter {
 		View v = convertView.inflate(context, R.layout.expandgroup, null);
 		v.setPadding(0, 30, 0, 0);
 		TextView txtView = (TextView) v.findViewById(R.id.txt1);
+//		if (groupPosition == 11) {
+//			txtView.setText("Your Profile");
+//			txtView.setTextSize(20f);
+//		}
 		if (groupPosition == 0) {
-			txtView.setText("Your Profile");
-			txtView.setTextSize(20f);
-		}
-		if (groupPosition == 1) {
 			txtView.setText("Add Contacts");
 			txtView.setTextSize(20f);
 		}
-		if (groupPosition == 2) {
+		if (groupPosition == 1) {
 			v = convertView.inflate(context, R.layout.accidentdetection, null);
 			v.setPadding(0, 30, 0, 0);
 			TextView ADMtv = (TextView) v.findViewById(R.id.tvADM);
@@ -127,7 +127,7 @@ public class ExampleAdapter implements ExpandableListAdapter {
 			});
 
 		}
-		if (groupPosition == 3) {
+		if (groupPosition == 2) {
 			txtView.setText("Notification");
 			txtView.setTextSize(20f);
 		}

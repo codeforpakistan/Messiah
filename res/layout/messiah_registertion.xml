@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/community"
+    >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="45dp"
+        android:text="Messiah Community"
+        android:textColor="#ffffff"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="30dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:text="Seek help and help others in nead near" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="55dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:text="you by becoming a part of our" />
+ <TextView
+        android:id="@+id/textView4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="70dp"
+        android:paddingLeft="110dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:text="community." />
+
+ <EditText
+     android:id="@+id/etFullName"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_below="@+id/textView4"
+     android:layout_marginTop="36dp"
+     android:textSize="25sp"
+     android:ems="10" 
+     android:textColor="#ffffff"
+     android:textColorHint="#ffffff"
+     android:singleLine="true"
+     android:lines="1"
+     android:hint="Full Name"/>
+ <EditText
+     android:id="@+id/etPhoneNumber"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_below="@+id/textView4"
+     android:layout_marginTop="96dp"
+     android:textSize="25sp"
+     android:ems="10" 
+     android:textColor="#ffffff"
+     android:textColorHint="#ffffff"
+     android:singleLine="true"
+     android:lines="1"
+     android:hint="Phone Number"/>
+ <Button
+    android:id="@+id/btnRegister"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_marginBottom="25dp"
+    android:background="#2c3e50"
+    android:text="Register me as Messiah"
+    android:textColor="#FFFFFF"
+    android:textSize="20sp" />
+</RelativeLayout>
