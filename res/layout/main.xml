@@ -1,51 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/AbsoluteLayout1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ECF0F1" >
- <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_x="135dp"
-        android:layout_y="5dp"
-        android:src="@drawable/contact" />
- <ImageView
-     android:id="@+id/imageView2"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_x="93dp"
-     android:layout_y="65dp"
-     android:src="@drawable/arrow" />
-    <ListView
-        android:id="@+id/Contactlist"
-        android:layout_width="300dp"
-        android:layout_height="320dp"
-        android:layout_x="10dp"
-        android:layout_y="80dp"
-        android:background="@drawable/rounded_corner" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECF0F1"
+    android:orientation="vertical"
+    android:padding="10dp" 
+    android:weightSum="1" >
 
-    <TextView
-        android:id="@+id/empty"
-        style="@android:style/TextAppearance.Large"
-        android:layout_width="300dp"
-        android:layout_height="385dp"
-        android:layout_x="10dp"
-        android:layout_y="10dp"
-        android:gravity="center"
-        android:text="No Contact Added" >
-    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.1" 
+        android:gravity="center" >
 
-    <Button
-        android:id="@+id/btnAddContact"
-        android:layout_width="150dp"
-        android:layout_height="40dip"
-        android:layout_x="78dp"
-        android:layout_y="410dp"
-        android:background="#34495E"
-        android:text="Add Contact"
-        android:textColor="#ECF0F1"
-        android:textSize="13dp" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon2" />
 
-</AbsoluteLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_weight="0.9"
+          android:gravity="center"
+          >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+           
+
+            <ListView
+                android:id="@+id/Contactlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_corner"
+                android:padding="20dp" >
+                
+            </ListView>
+             <TextView
+                android:id="@+id/empty"
+                style="@android:style/TextAppearance.Large"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="No Contact Added" />
+        </FrameLayout>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.3"
+          android:gravity="center" 
+         >
+
+        <Button
+            android:id="@+id/btnAddContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="#34495E"
+            android:text="Add Contact"
+            android:textColor="#ECF0F1"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
