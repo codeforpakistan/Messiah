@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/community"
+    >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Verification"
+        android:textColor="#ffffff"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="30dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:text="You will now receive a message from" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="32dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:text="Messiah. Kindly enter the verification" />
+ <TextView
+        android:id="@+id/textView4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="70dp"
+        android:paddingLeft="94dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:text="code in the box below." />
+
+ <EditText
+     android:id="@+id/etVerfication"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_below="@+id/textView4"
+     android:layout_marginTop="36dp"
+     android:textSize="25sp"
+     android:ems="10" 
+     android:textColor="#ffffff"
+     android:textColorHint="#ffffff"
+     android:singleLine="true"
+     android:lines="1"
+     android:hint="Verification Code"/>
+
+ <Button
+    android:id="@+id/btnVerify"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_marginBottom="25dp"
+    android:background="#2c3e50"
+    android:text="Verify me"
+    android:textColor="#FFFFFF"
+    android:textSize="20sp" />
+
+</RelativeLayout>

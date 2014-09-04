@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ECF0F1" >
+ <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_x="135dp"
+        android:layout_y="5dp"
+        android:src="@drawable/speeddial" />
+ <ImageView
+     android:id="@+id/imageView2"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_x="93dp"
+     android:layout_y="65dp"
+     android:src="@drawable/arrow" />
+    <ListView
+        android:id="@+id/SpeedDialList"
+        android:layout_width="300dp"
+        android:layout_height="320dp"
+        android:layout_x="10dp"
+        android:layout_y="80dp"
+        android:background="@drawable/rounded_corner" />
+
+    <TextView
+        android:id="@+id/empty"
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="300dp"
+        android:layout_height="385dp"
+        android:layout_x="10dp"
+        android:layout_y="10dp"
+        android:gravity="center"
+        android:text="No Contact Added" >
+    </TextView>
+
+    <Button
+        android:id="@+id/btnAddContactSpeed"
+        android:layout_width="150dp"
+        android:layout_height="40dip"
+        android:layout_x="78dp"
+        android:layout_y="410dp"
+        android:background="#34495E"
+        android:text="Add Contact"
+        android:textColor="#ECF0F1"
+        android:textSize="13dp" />
+
+</AbsoluteLayout>
