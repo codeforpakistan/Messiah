@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,7 +16,24 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- custom permission so only this app can receive its messages. -->
+    <permission
+        android:name="com.CFP.messiah.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
 
+    <uses-permission android:name="com.CFP.messiah.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+<supports-screens 
+    android:smallScreens="true"
+    android:normalScreens="true"
+    android:largeScreens="true"
+    
+    />
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -37,30 +54,71 @@
             android:name="com.CFP.messiah.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.CFP.messiah.ImplementMaps"
             android:label="@string/app_name" >
         </activity>
-  <activity
+        <activity
             android:name="com.CFP.messiah.Settings"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.CFP.messiah.ListViewDemoActivity"
+            android:name="com.CFP.messiah.MessiahContacts"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.CFP.messiah.SpeedDialActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.CFP.messiah.ContactView"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.CFP.messiah.MessiahRegistertion"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.CFP.messiah.Verification"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.CFP.messiah.WelcomeScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.CFP.messiah" />
+            </intent-filter>
+        </receiver>
+
         <service android:name="com.CFP.messiah.AppLocationService" >
         </service>
-         <service android:name="com.CFP.messiah.AccidentService" >
+        <service android:name="com.CFP.messiah.AccidentService" >
+        </service>
+        <service android:name="com.CFP.messiah.GPSTracker" >
+        </service>
+        <service android:name="com.CFP.messiah.GIntentService" >
         </service>
     </application>
 

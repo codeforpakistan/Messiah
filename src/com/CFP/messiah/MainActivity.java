@@ -124,6 +124,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			if (CheckNetwork.isInternetAvailable(MainActivity.this)){
 			startActivity(new Intent(MainActivity.this, ImplementMaps.class));
 			}
+			else{
+				Toast.makeText(getApplicationContext(), "No Internet Connection",Toast.LENGTH_SHORT).show();
+				
+			}
 			// tracker.trackEvent(
 			// "Button", // Category, i.e. Player Buttons
 			// "MAPS", // Action, i.e. Play

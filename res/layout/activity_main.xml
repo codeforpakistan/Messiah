@@ -34,8 +34,8 @@
 
         <Button
             android:id="@+id/btnSMS"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/emergencybutton" />
 
         <ProgressBar
@@ -67,7 +67,7 @@
                 android:id="@+id/btnMaps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/icon5" />
+                android:background="@drawable/map_icon" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -88,7 +88,7 @@
                 android:id="@+id/btnSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/icon4" />
+                android:background="@drawable/settings_icon" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -109,7 +109,7 @@
                 android:id="@+id/btnContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/icon2" />
+                android:background="@drawable/contact_icon" />
 
             <TextView
                 android:id="@+id/textView3"
