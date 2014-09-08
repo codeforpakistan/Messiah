@@ -30,7 +30,8 @@ public class WelcomeScreen extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-			startActivity(new Intent(WelcomeScreen.this,ContactView.class));	
+			//startActivity(new Intent(WelcomeScreen.this,ContactView.class));
+				startActivity(new Intent(WelcomeScreen.this,MainActivity.class));
 			}
 		});
 	}
