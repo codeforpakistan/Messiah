@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MessiahRegistertion extends Activity {
@@ -21,15 +23,31 @@ public class MessiahRegistertion extends Activity {
 	Button Register;
 	String fullname, phonenumber;
 	int status;
+	TextView tv1,tv2,tv3,tv4;
 	SharedPreferences users;
 	Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.messiah_registertion);
+		tv1 = (TextView)findViewById(R.id.TVMessiahCommunity);
+		tv2 = (TextView)findViewById(R.id.TVpart);
+		tv3 = (TextView)findViewById(R.id.TVneed);
+		tv4 = (TextView)findViewById(R.id.TVseek);
+		Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
+		Typeface font1 = Typeface.createFromAsset(getAssets(), "rcb.ttf");
+		
+		tv1.setTypeface(font1);
+		tv2.setTypeface(font);
+		tv3.setTypeface(font);
+		tv4.setTypeface(font);
+		
 		FullName = (EditText) findViewById(R.id.etFullName);
 		PhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
 		Register = (Button) findViewById(R.id.btnRegister);
+		FullName.setTypeface(font);
+		PhoneNumber.setTypeface(font);
+		Register.setTypeface(font);
 		Register.setOnClickListener(new View.OnClickListener() {
 
 			@Override

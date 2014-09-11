@@ -16,7 +16,7 @@
         android:padding="20dp" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/TVWelcome"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -34,7 +34,7 @@
         android:padding="57dp" >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/TVInsantly"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -43,7 +43,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/TVyour"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -52,7 +52,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/TVemergency"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

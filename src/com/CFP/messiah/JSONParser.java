@@ -137,7 +137,7 @@ public class JSONParser {
 			//JSONArray array = new JSONArray(json);
 			//Log.v("Hit", array.toString());
 		} catch (JSONException e) {
-			Log.e("JSON Parser", "Error parsing data XYZ" + e.toString() + json);
+			Log.e("JSON Parser", "Error parsing data " + e.toString() + json);
 		}
 
 		// return JSON String

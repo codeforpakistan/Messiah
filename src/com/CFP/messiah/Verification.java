@@ -10,12 +10,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gcm.GCMRegistrar;
 import com.google.android.gms.common.ConnectionResult;
@@ -27,6 +29,7 @@ public class Verification extends Activity {
 	EditText Verfication;
 	Button Verify;
 	String PhoneNumber, VerficationCode;
+	TextView tv1,tv2,tv3,tv4;
 	int status;
 	SharedPreferences users;
 	Editor editor;
@@ -44,6 +47,16 @@ public class Verification extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.verification);
+		tv1 = (TextView)findViewById(R.id.TVverification);
+		tv2 = (TextView)findViewById(R.id.TVcode);
+		tv3 = (TextView)findViewById(R.id.TVreceive);
+		tv4 = (TextView)findViewById(R.id.TVfrom);
+		Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
+		Typeface font1 = Typeface.createFromAsset(getAssets(), "rcb.ttf");
+		tv1.setTypeface(font1);
+		tv2.setTypeface(font);
+		tv3.setTypeface(font);
+		tv4.setTypeface(font);
 		obj = new Device_GPS_Coords(Verification.this);
 		obj.locationContinousUpdate();
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
@@ -52,6 +65,8 @@ public class Verification extends Activity {
 		context = Verification.this;
 		Verfication = (EditText) findViewById(R.id.etVerfication);
 		Verify = (Button) findViewById(R.id.btnVerify);
+		Verfication.setTypeface(font);
+		Verify.setTypeface(font);
 		Verify.setOnClickListener(new View.OnClickListener() {
 
 			@Override

@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,6 +52,8 @@ public class ListViewDemoActivity extends Activity {
 		}
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		AddContact = (Button) findViewById(R.id.btnAddContact);
+		Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
+		AddContact.setTypeface(font);
 		AddContact.setOnClickListener(new View.OnClickListener() {
 
 			@Override

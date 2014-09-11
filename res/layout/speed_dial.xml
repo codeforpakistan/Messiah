@@ -39,7 +39,7 @@
 
     <Button
         android:id="@+id/btnAddContactSpeed"
-        android:layout_width="150dp"
+        android:layout_width="fill_parent"
         android:layout_height="40dip"
         android:layout_x="78dp"
         android:layout_y="410dp"

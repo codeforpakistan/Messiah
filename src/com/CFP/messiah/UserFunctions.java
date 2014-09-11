@@ -11,13 +11,13 @@ import android.util.Log;
 public class UserFunctions {
 
 	private JSONParser jsonParser;
-	private static String IP = "192.168.1.4";
-	private static String RegisterationURL = "http://" + IP + ":8383/Messiah-Web/inc/api.registration_controller.php/";// "http://messiah-pdma.herokuapp.com/inc/api.login_controller.php";
-	private static String VerificationURL = "http://" + IP + ":8383/Messiah-Web/inc/api.verification_controller.php/";
-	private static String InsertLocationURL = "http://" + IP + ":8383/Messiah-Web/inc/api.current_location_controller.php/";
-	private static String GetMessiah = "http://" + IP + ":8383/Messiah-Web/inc/api.get_nearby_messiah_controller.php/";
-	private static String SendGCMId = "http://" + IP + ":8383/Messiah-Web/inc/api.gcm_reg_controller.php/";
-	private static String SendHelpRequest = "http://" + IP + ":8383/Messiah-Web/inc/api.gcm_request_controller.php/";
+	private static String IP = "107.170.26.223/messiah";//"192.168.1.4:8383/Messiah-Web";
+	private static String RegisterationURL = "http://" + IP + "/inc/api.registration_controller.php/";// "http://messiah-pdma.herokuapp.com/inc/api.login_controller.php";
+	private static String VerificationURL = "http://" + IP + "/inc/api.verification_controller.php/";
+	private static String InsertLocationURL = "http://" + IP + "/inc/api.current_location_controller.php/";
+	private static String GetMessiah = "http://" + IP + "/inc/api.get_nearby_messiah_controller.php/";
+	private static String SendGCMId = "http://" + IP + "/inc/api.gcm_reg_controller.php/";
+	private static String SendHelpRequest = "http://" + IP + "/inc/api.gcm_request_controller.php/";
 	
 		// constructor
 	public UserFunctions() {

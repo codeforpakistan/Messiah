@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -27,6 +29,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -47,7 +51,7 @@ public class ImplementMaps extends FragmentActivity {
 	HashMap<String, String> data;
 	String NotificationStatus;
 	String hisPhoneNumber;
-
+	BitmapDescriptor markericon;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,6 +60,7 @@ public class ImplementMaps extends FragmentActivity {
 		PhoneNumber = users.getString("Phonenumber", null);
 		// appLocationService = new AppLocationService(ImplementMaps.this);
 		// location = NWmethod();
+		markericon = BitmapDescriptorFactory.fromResource(R.drawable.map_loc);
 		try {
 			// Loading map
 			initilizeMap();
@@ -130,9 +135,11 @@ public class ImplementMaps extends FragmentActivity {
 				String Longitude = jsonobj.getString("Longitude");
 				Marker m = googleMap.addMarker(new MarkerOptions().position(
 						new LatLng(Double.parseDouble(Latitude), Double
-								.parseDouble(Longitude))).title(FullName));
+								.parseDouble(Longitude))).title(FullName)
+								.icon(markericon));
+				
 				data.put(m.getId(), PhoneNumber);
-
+					
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -170,6 +177,10 @@ public class ImplementMaps extends FragmentActivity {
 //
 //		googleMap.moventerCamera(c
 //		googleMap.animateCamera(zoom);
+//		Marker m = googleMap.addMarker(new MarkerOptions().position(
+//				new LatLng(Latitude,Longitude)).title("Zahid"));
+//		m.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.map_icon));
+		
 	}
 
 	private void Temp() {
@@ -243,7 +254,11 @@ public class ImplementMaps extends FragmentActivity {
 		}
 		return finalLoc;
 	}
-
+public void nomessiahfound(){
+	if(jsonarray.length()==0)
+		Toast.makeText(getApplicationContext(), "No Messiah found nearby", 5000).show();
+	
+}
 	private class SetConnection extends AsyncTask<Void, Void, Void> {
 		@Override
 		protected Void doInBackground(Void... arg0) {
@@ -253,7 +268,10 @@ public class ImplementMaps extends FragmentActivity {
 
 		@Override
 		protected void onPostExecute(Void result) {
+			if(jsonarray.length()>0)
 			ShowNearbyMessiah();
+			
+			nomessiahfound();
 			super.onPostExecute(result);
 		}
 	}
