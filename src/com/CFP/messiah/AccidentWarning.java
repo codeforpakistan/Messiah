@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
@@ -19,13 +21,16 @@ import android.widget.Toast;
 
 public class AccidentWarning extends Activity {
 	 MediaPlayer mp ;
+	 SharedPreferences users;
+	 Editor editor;
 	 String lat=null;
 	 String lon=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accident_warning);
-		
+		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		editor = users.edit();
 	mp	= MediaPlayer.create(AccidentWarning.this, R.raw.alarm);	
 		notification();
 		
@@ -51,6 +56,7 @@ public class AccidentWarning extends Activity {
 							int whichButton) {
 						dialog.cancel();
 						mp.stop();
+						editor.putBoolean("Accident",false).commit();
 						AccidentWarning.this.finish();
 					}
 					// End of onClick(DialogInterface dialog, int
@@ -63,14 +69,14 @@ public class AccidentWarning extends Activity {
 					SendSMS();
 					mp.stop();
 					AccidentWarning.this.finish();
-						
+					editor.putBoolean("Accident",false).commit();
 					}
 				}); // End of alert.setNegativeButton
 		AlertDialog alertDialog = alert.create();
 		alertDialog.show();
 
-Toast.makeText(getApplicationContext(), "accident", Toast.LENGTH_SHORT).show();				
-
+//Toast.makeText(getApplicationContext(), "accident", Toast.LENGTH_SHORT).show();				
+		
 		
 	}
 

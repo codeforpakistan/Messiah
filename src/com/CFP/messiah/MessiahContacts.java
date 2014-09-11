@@ -12,6 +12,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.NavUtils;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -50,6 +51,7 @@ public class MessiahContacts extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		list = (ListView) findViewById(R.id.Contactlist);
 		ShowMessiahContact();
 		//registerForContextMenu(list);
@@ -182,7 +184,7 @@ public class MessiahContacts extends Activity {
 		nocontacts.setTypeface(font);
 		if (count > 0) {
 			nocontacts.setText("");
-			nocontacts.setVisibility(View.GONE);
+			nocontacts.setVisibility(View.INVISIBLE);
 			Contacts = datainsertion.displayData(getApplicationContext());
 
 			ContactsArray = new ArrayList<String>(count);
@@ -286,10 +288,11 @@ public class MessiahContacts extends Activity {
 			datainsertion.removecontact(getApplicationContext(), listItemName);
 			count = datainsertion.countcontacts(getApplicationContext());
 			if (count > 0) {
-				nocontacts.setVisibility(View.GONE);
+				nocontacts.setVisibility(View.INVISIBLE);
 			}
 			if (count == 0) {
 				nocontacts.setText("No Contacts Added");
+				nocontacts.setVisibility(View.VISIBLE);
 			}
 			
 		} else {
@@ -339,7 +342,7 @@ public class MessiahContacts extends Activity {
 			alertDialog.show();
 
 		}
-		ShowMessiahContact();
+		
 		
 
 	}
@@ -362,5 +365,9 @@ public class MessiahContacts extends Activity {
 		  menu.add(Menu.NONE, CONTEXT_MENU_EDIT, Menu.NONE, "Edit Message");
 		  
 		
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {onBackPressed();
+    return true;
 	}
 }

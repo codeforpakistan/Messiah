@@ -142,4 +142,7 @@ public class MessiahRegistertion extends Activity {
 			startnextactivity();
 		}
 	}
+	@Override
+	public void onBackPressed() {
+	}
 }

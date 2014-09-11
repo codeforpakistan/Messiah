@@ -3,15 +3,12 @@ package com.CFP.messiah;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
@@ -20,12 +17,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.telephony.SmsManager;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -33,6 +28,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 
@@ -351,5 +347,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-
+@Override
+public void onBackPressed() {
+	System.exit(0);
+}
 }

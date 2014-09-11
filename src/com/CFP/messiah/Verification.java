@@ -30,7 +30,7 @@ public class Verification extends Activity {
 	Button Verify;
 	String PhoneNumber, VerficationCode;
 	TextView tv1,tv2,tv3,tv4;
-	int status;
+	int status,status1;
 	SharedPreferences users;
 	Editor editor;
 	double Latitude, Longitude;
@@ -76,7 +76,7 @@ public class Verification extends Activity {
 				if (VerficationCode.length() == 7) {
 					if (CheckNetwork.isInternetAvailable(Verification.this)) {
 						new SetConnection().execute();
-						startnextactivity();
+						
 					} else {
 
 						Toast.makeText(getApplicationContext(),
@@ -156,9 +156,9 @@ public class Verification extends Activity {
 		// JSONObject object = caller.SignIn(Username, Password);
 
 		try {
-			status = json.getInt("Status");// object.getBoolean("Status");
+			status1 = json.getInt("Status");// object.getBoolean("Status");
 
-			if (status == 1) {
+			if (status1 == 1) {
 				Log.d("Location", "Location Updated");
 
 			} else {
@@ -287,9 +287,9 @@ public class Verification extends Activity {
 		protected Void doInBackground(Void... params) {
 			doverifiy(PhoneNumber, VerficationCode);
 			if (status == 1) {
-
 				sendlocation();
 				registergcm();
+				
 			}
 			return null;
 		}
@@ -298,10 +298,14 @@ public class Verification extends Activity {
 		protected void onPostExecute(Void result) {
 			if (dialog.isShowing()) {
 				dialog.dismiss();
+				startnextactivity();
 			}
 
 		}
 
 	}
+@Override
+public void onBackPressed() {
 
+}
 }
