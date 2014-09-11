@@ -4,30 +4,40 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import org.json.JSONObject;
-
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
-import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.telephony.SmsManager;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+@SuppressLint("NewApi")
 public class MainActivity extends Activity implements OnClickListener {
 	Button sms, maps, settings, speeddial;
 	private ProgressBar progBar;
@@ -35,15 +45,46 @@ public class MainActivity extends Activity implements OnClickListener {
 	private int mProgressStatus = 0;
 	String lat = null;
 	String lon = null;
+	TextView tip, maptext, settingstext, contacttext;
+
+	// ShowcaseView sv;
 	// final GoogleAnalyticsTracker tracker =
-	// GoogleAnalyticsTracker.getInstance();
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main); 
-		// tracker.startNewSession("UA-50966088-1", this);
+		setContentView(R.layout.activity_main);
+		EasyTracker.getInstance(this).activityStart(this);
 		progBar = (ProgressBar) findViewById(R.id.progressBar1);
 		try {
+			
+			
+//			LayoutInflater inflater = (LayoutInflater) this.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+//			View view = inflater.inflate( R.layout.helpoverlay, null );
+//			setContentView(view);
+//			view.setOnClickListener(new View.OnClickListener() {
+//				
+//				@Override
+//				public void onClick(View arg0) {
+//				setContentView(R.layout.activity_main);
+//					
+//				}
+//			});
+			tip = (TextView) findViewById(R.id.textView4);
+			maptext = (TextView) findViewById(R.id.tvmap);
+			settingstext = (TextView) findViewById(R.id.textView2);
+			contacttext = (TextView) findViewById(R.id.textView3);
+			Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
+			tip.setTypeface(font);
+			
+			maptext.setTypeface(font);
+			settingstext.setTypeface(font);
+			contacttext.setTypeface(font);
 			sms = (Button) findViewById(R.id.btnSMS);
 			sms.setOnClickListener(this);
 			maps = (Button) findViewById(R.id.btnMaps);
@@ -52,6 +93,27 @@ public class MainActivity extends Activity implements OnClickListener {
 			speeddial.setOnClickListener(this);
 			settings = (Button) findViewById(R.id.btnSettings);
 			settings.setOnClickListener(this);
+			tip.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					AlertDialog.Builder builder1 = new AlertDialog.Builder(
+							MainActivity.this);
+					builder1.setMessage("If your car is on fire, pull over as quickly as it is safe to do so.");
+					builder1.setCancelable(true);
+					builder1.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.cancel();
+								}
+							});
+
+					AlertDialog alert11 = builder1.create();
+					alert11.show();
+
+				}
+			});
 		} catch (Exception e) {
 
 			Log.v("Error", e.toString());
@@ -62,6 +124,16 @@ public class MainActivity extends Activity implements OnClickListener {
 		// an.setFillAfter(true);
 		// pb.startAnimation(an);
 
+		// ShowcaseView.ConfigOptions co = new ShowcaseView.ConfigOptions();
+		// co.hideOnClickOutside = true;
+		// ViewTarget target = new ViewTarget(R.id.btnSMS, this);
+		// sv = ShowcaseView.insertShowcaseView(target, this, "Hello",
+		// "Welcome", co);
+		// sv.setOnShowcaseEventListener(this);
+
+		// sv = (ShowcaseView) findViewById(R.id.showcase);
+		// sv.setShowcaseView(findViewById(R.id.btnSMS));
+		// sv.setOnShowcaseEventListener(this);
 	}
 
 	@Override
@@ -103,8 +175,20 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.btnSMS:
+		int id = v.getId();
+		if (id == R.id.btnSMS) {
+			EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+			// MapBuilder.createEvent().build() returns a Map of event fields
+			// and values
+			// that are set and sent with the hit.
+			easyTracker.send(MapBuilder.createEvent("ui_action", // Event
+																	// category
+																	// (required)
+					"button_press", // Event action (required)
+					"Settings", // Event label
+					null) // Event value
+					.build());
 			DataInsertion obj = new DataInsertion();
 			int count = obj.countcontacts(getApplicationContext());
 			if (count > 0)
@@ -112,45 +196,54 @@ public class MainActivity extends Activity implements OnClickListener {
 			else
 				Toast.makeText(getApplicationContext(), "No Contact Found",
 						Toast.LENGTH_LONG).show();
-			// tracker.trackEvent(
-			// "Button", // Category, i.e. Player Buttons
-			// "HELP", // Action, i.e. Play
-			// "clicked", // Label i.e. Play
-			// 3);
-			break;
-		case R.id.btnMaps:
-			
-			
-			if (CheckNetwork.isInternetAvailable(MainActivity.this)){
-			startActivity(new Intent(MainActivity.this, ImplementMaps.class));
-			}
-			else{
-				Toast.makeText(getApplicationContext(), "No Internet Connection",Toast.LENGTH_SHORT).show();
-				
-			}
-			// tracker.trackEvent(
-			// "Button", // Category, i.e. Player Buttons
-			// "MAPS", // Action, i.e. Play
-			// "clicked", // Label i.e. Play
-			// 0);
-			break;
-		case R.id.btnSettings:
-			startActivity(new Intent(MainActivity.this, Settings.class));
-			// tracker.trackEvent(
-			// "Button", // Category, i.e. Player Buttons
-			// "Settings", // Action, i.e. Play
-			// "clicked", // Label i.e. Play
-			// 1);
-			break;
-		case R.id.btnContact:
-			startActivity(new Intent(MainActivity.this, MessiahContacts.class));
-			// tracker.trackEvent(
-			// "Button", // Category, i.e. Player Buttons
-			// "Speed Dial", // Action, i.e. Play
-			// "clicked", // Label i.e. Play
-			// 2);
-			break;
+		} else if (id == R.id.btnMaps) {
+			EasyTracker easyTracker = EasyTracker.getInstance(this);
 
+			// MapBuilder.createEvent().build() returns a Map of event fields
+			// and values
+			// that are set and sent with the hit.
+			easyTracker.send(MapBuilder.createEvent("ui_action", // Event
+																	// category
+																	// (required)
+					"button_press", // Event action (required)
+					"Maps", // Event label
+					null) // Event value
+					.build());
+			if (CheckNetwork.isInternetAvailable(MainActivity.this)) {
+				startActivity(new Intent(MainActivity.this, ImplementMaps.class));
+			} else {
+				Toast.makeText(getApplicationContext(),
+						"No Internet Connection", Toast.LENGTH_SHORT).show();
+
+			}
+		} else if (id == R.id.btnSettings) {
+			EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+			// MapBuilder.createEvent().build() returns a Map of event fields
+			// and values
+			// that are set and sent with the hit.
+			easyTracker.send(MapBuilder.createEvent("ui_action", // Event
+																	// category
+																	// (required)
+					"button_press", // Event action (required)
+					"Settings", // Event label
+					null) // Event value
+					.build());
+			startActivity(new Intent(MainActivity.this, Settings.class));
+		} else if (id == R.id.btnContact) {
+			EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+			// MapBuilder.createEvent().build() returns a Map of event fields
+			// and values
+			// that are set and sent with the hit.
+			easyTracker.send(MapBuilder.createEvent("ui_action", // Event
+																	// category
+																	// (required)
+					"button_press", // Event action (required)
+					"Contact", // Event label
+					null) // Event value
+					.build());
+			startActivity(new Intent(MainActivity.this, MessiahContacts.class));
 		}
 
 	}
@@ -258,6 +351,5 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-
 
 }

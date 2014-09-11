@@ -37,6 +37,7 @@ public class SpeedDialActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.speed_dial);
+		Toast.makeText(getApplicationContext(), "This", 5000).show();
 		ShowDialingContacts();
 		AddContact = (Button) findViewById(R.id.btnAddContactSpeed);
 		AddContact.setOnClickListener(new View.OnClickListener() {

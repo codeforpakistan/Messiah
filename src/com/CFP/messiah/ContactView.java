@@ -54,13 +54,11 @@ public class ContactView extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
-		switch (item.getItemId()) {
-		// action with ID action_logout was selected
-		case R.id.action_done:
-		addtodatabase();
-		//startActivity(new Intent(ContactView.this,MainActivity.class));
-		startActivity(new Intent(ContactView.this,MessiahRegistertion.class));
-			break;
+		int itemId = item.getItemId();
+		if (itemId == R.id.action_done) {
+			addtodatabase();
+			//startActivity(new Intent(ContactView.this,MainActivity.class));
+			startActivity(new Intent(ContactView.this,MessiahRegistertion.class));
 		}
 		
 		return true;
