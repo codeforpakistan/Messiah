@@ -6,21 +6,20 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.graphics.Typeface;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v4.app.NavUtils;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,21 +39,24 @@ public class MessiahContacts extends Activity {
 	TextView nocontacts;
 	ListView list;
 	int count;
+	SharedPreferences users;
+	Editor editor;
 	ArrayList<String> ContactsArray;
 	ArrayList<String> PhoneArray;
- int pos;
-	final int CONTEXT_MENU_VIEW =1;
-	 final int CONTEXT_MENU_EDIT =2;
-	 final int CONTEXT_MENU_ARCHIVE =3;
+	public static int pos;
+	final int CONTEXT_MENU_VIEW = 1;
+	final int CONTEXT_MENU_EDIT = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		editor = users.edit();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		list = (ListView) findViewById(R.id.Contactlist);
 		ShowMessiahContact();
-		//registerForContextMenu(list);
+		// registerForContextMenu(list);
 		AddContact = (Button) findViewById(R.id.btnAddContact);
 		Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
 		AddContact.setTypeface(font);
@@ -205,6 +207,7 @@ public class MessiahContacts extends Activity {
 
 	private class listrow extends ArrayAdapter<String> {
 		private final Context context;
+		public int positionx;
 
 		public listrow(Context context, ArrayList<String> names) {
 			super(context, R.layout.messiah_contacts, names);
@@ -214,7 +217,8 @@ public class MessiahContacts extends Activity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			pos = position;
+			final int temp = position;
+			positionx = temp;
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			final View v = inflater.inflate(R.layout.messiah_contacts, parent,
@@ -225,12 +229,13 @@ public class MessiahContacts extends Activity {
 			tv.setText(ContactsArray.get(position));
 			ImageView dial = (ImageView) v.findViewById(R.id.IVDial);
 			ImageView edit = (ImageView) v.findViewById(R.id.IVEdit);
+
 			dial.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					Intent callIntent = new Intent(Intent.ACTION_CALL);
-					String phoneNumber = PhoneArray.get(pos);
+					String phoneNumber = PhoneArray.get(temp);
 					callIntent.setData(Uri.parse("tel:" + phoneNumber));
 					startActivity(callIntent);
 
@@ -240,44 +245,48 @@ public class MessiahContacts extends Activity {
 
 				@Override
 				public void onClick(View view) {
+					editor.putInt("position", temp).commit();
 					registerForContextMenu(view);
 					openContextMenu(view);
-						
+
 				}
 			});
 			return v;
 		}
 	}
 
+	public void callme() {
+
+	}
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		switch(item.getItemId())
-	    {
-	    case CONTEXT_MENU_VIEW:
-	    {
-	    	int menuItemIndex = 0;
-	    	String listItemName = Contacts[pos];
-	    	menuopertion( menuItemIndex, listItemName);
-	    }
-	    break;
-	    case CONTEXT_MENU_EDIT:
-	    {
-	    	int menuItemIndex = 1;
-	    	String listItemName = Contacts[pos];
-	    	menuopertion( menuItemIndex, listItemName);
+		switch (item.getItemId()) {
+		case CONTEXT_MENU_VIEW: {
+			int menuItemIndex = 0;
+			
+			String listItemName = Contacts[users.getInt("position", 0)];
+			menuopertion(menuItemIndex, listItemName);
+		}
+			break;
+		case CONTEXT_MENU_EDIT: {
+			int menuItemIndex = 1;
+			String listItemName = Contacts[users.getInt("position", 0)];
+			menuopertion(menuItemIndex, listItemName);
 
-	    }
-	    break;
-	    }
+		}
+			break;
+		}
 
-	    return super.onContextItemSelected(item);
-//		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
-//				.getMenuInfo();
-//		int menuItemIndex = item.getItemId();
-//
-//		String listItemName = Contacts[info.position];
-//		menuopertion(menuItemIndex, listItemName);
-//		return true;
+		return super.onContextItemSelected(item);
+		// AdapterView.AdapterContextMenuInfo info =
+		// (AdapterView.AdapterContextMenuInfo) item
+		// .getMenuInfo();
+		// int menuItemIndex = item.getItemId();
+		//
+		// String listItemName = Contacts[info.position];
+		// menuopertion(menuItemIndex, listItemName);
+		// return true;
 	}
 
 	private void menuopertion(int menuItemIndex, final String listItemName) {
@@ -294,7 +303,7 @@ public class MessiahContacts extends Activity {
 				nocontacts.setText("No Contacts Added");
 				nocontacts.setVisibility(View.VISIBLE);
 			}
-			
+
 		} else {
 
 			// View Message
@@ -342,32 +351,32 @@ public class MessiahContacts extends Activity {
 			alertDialog.show();
 
 		}
-		
-		
 
 	}
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-//
-//		if (v.getId() == R.id.list) {
-//			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-//			menu.setHeaderTitle(Contacts[info.position]);
-//			String[] menuItems = getResources().getStringArray(R.array.menu);
-//			for (int i = 0; i < menuItems.length; i++) {
-//				menu.add(Menu.NONE, i, i, menuItems[i]);
-//			}
-//		}
-		
-			menu.setHeaderTitle("My Context Menu");          
-		  menu.add(Menu.NONE, CONTEXT_MENU_VIEW, Menu.NONE, "Remove Contact");
-		  menu.add(Menu.NONE, CONTEXT_MENU_EDIT, Menu.NONE, "Edit Message");
-		  
-		
+		//
+		// if (v.getId() == R.id.list) {
+		// AdapterView.AdapterContextMenuInfo info =
+		// (AdapterView.AdapterContextMenuInfo) menuInfo;
+		// menu.setHeaderTitle(Contacts[info.position]);
+		// String[] menuItems = getResources().getStringArray(R.array.menu);
+		// for (int i = 0; i < menuItems.length; i++) {
+		// menu.add(Menu.NONE, i, i, menuItems[i]);
+		// }
+		// }
+
+		menu.setHeaderTitle("My Context Menu");
+		menu.add(Menu.NONE, CONTEXT_MENU_VIEW, Menu.NONE, "Remove Contact");
+		menu.add(Menu.NONE, CONTEXT_MENU_EDIT, Menu.NONE, "Edit Message");
+
 	}
+
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {onBackPressed();
-    return true;
+	public boolean onOptionsItemSelected(MenuItem item) {
+		onBackPressed();
+		return true;
 	}
 }
