@@ -3,6 +3,8 @@ package com.CFP.messiah;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,15 +18,19 @@ public class AccidentService extends Service implements SensorEventListener {
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometer;
 	private final float NOISE = (float) 1.0;
-
+	SharedPreferences users;
+	 Editor editor;
 	float X;
 	float Y;
 	float Z;
 
 	@Override
 	public void onCreate() {
-		Toast.makeText(getApplicationContext(), "started", Toast.LENGTH_SHORT)
-				.show();
+		//Toast.makeText(getApplicationContext(), "started", Toast.LENGTH_SHORT).show();
+		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		editor = users.edit();
+		
+		
 		mInitialized = false;
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		mAccelerometer = mSensorManager
@@ -86,11 +92,15 @@ public class AccidentService extends Service implements SensorEventListener {
 			double accl = Math.sqrt(gx * gx + gy * gy + gz * gz);
 
 			if (accl > gMagnitude * g) {
-				Intent i = new Intent();
-				i.setClass(this, AccidentWarning.class);
-				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(i);
-
+				
+				if(users.getBoolean("Accident",false));{
+//				Intent i = new Intent();
+//				i.setClass(this, AccidentWarning.class);
+//				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			editor.putBoolean("Accident",true).commit();
+//				startActivity(i);
+				Toast.makeText(getApplicationContext(),String.valueOf(users.getBoolean("Accident",false)) , Toast.LENGTH_SHORT).show();
+				}
 			}
 		}
 

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,7 +21,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony.Sms.Conversations;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -56,6 +59,7 @@ public class ImplementMaps extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.maps);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
 		PhoneNumber = users.getString("Phonenumber", null);
 		// appLocationService = new AppLocationService(ImplementMaps.this);
@@ -76,6 +80,9 @@ public class ImplementMaps extends FragmentActivity {
 						Map.Entry pairs = (Map.Entry) it.next();
 						if (m.equals(pairs.getKey())) {
 							hisPhoneNumber = pairs.getValue().toString();
+//							Toast.makeText(getApplicationContext(), hisPhoneNumber, Toast.LENGTH_SHORT).show();
+//							hisPhoneNumber.substring(1,hisPhoneNumber.length());
+//							Toast.makeText(getApplicationContext(), hisPhoneNumber, Toast.LENGTH_SHORT).show();
 							new SendNotification().execute();
 						}
 
@@ -293,5 +300,10 @@ public void nomessiahfound(){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		onBackPressed();
+    return true;
 	}
 }

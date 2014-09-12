@@ -120,7 +120,7 @@ public class DataInsertion {
 		database.execSQL("DELETE FROM TBL_CONTACT WHERE CONTACT_NAME = '"
 				+ listItemName + "'");
 		database.close();
-		Toast.makeText(ctx, listItemName + "Deleted ", Toast.LENGTH_LONG)
+		Toast.makeText(ctx, listItemName + " Deleted ", Toast.LENGTH_LONG)
 				.show();
 
 	}

@@ -30,7 +30,7 @@ public class Verification extends Activity {
 	Button Verify;
 	String PhoneNumber, VerficationCode;
 	TextView tv1,tv2,tv3,tv4;
-	int status;
+	int status,status1;
 	SharedPreferences users;
 	Editor editor;
 	double Latitude, Longitude;
@@ -38,7 +38,7 @@ public class Verification extends Activity {
 	Device_GPS_Coords obj;
 	private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	GoogleCloudMessaging gcm;
-	String regid;
+	static String regid = "";
 	Context context;
 	String SENDER_ID = "344765759058";
 
@@ -76,7 +76,7 @@ public class Verification extends Activity {
 				if (VerficationCode.length() == 7) {
 					if (CheckNetwork.isInternetAvailable(Verification.this)) {
 						new SetConnection().execute();
-						startnextactivity();
+						
 					} else {
 
 						Toast.makeText(getApplicationContext(),
@@ -156,9 +156,9 @@ public class Verification extends Activity {
 		// JSONObject object = caller.SignIn(Username, Password);
 
 		try {
-			status = json.getInt("Status");// object.getBoolean("Status");
+			status1 = json.getInt("Status");// object.getBoolean("Status");
 
-			if (status == 1) {
+			if (status1 == 1) {
 				Log.d("Location", "Location Updated");
 
 			} else {
@@ -172,23 +172,25 @@ public class Verification extends Activity {
 
 	}
 
-	private void registergcm() {
+	private boolean registergcm() {
 		if (checkPlayServices()) {
 			gcm = GoogleCloudMessaging.getInstance(Verification.this);
 			regid = getRegistrationId(context);
 
 			Log.d("RegID", "RegId is intialized");
 			if (regid.isEmpty()) {
-				registerInBackground();
+				return true;			
 			}
 		} else {
-			Log.d("FireflyActivity", "No valid Google Play Services APK found.");
+			Log.d("Messiah", "No valid Google Play Services APK found.");
 		}
+		return false;
 	}
 
-	private void registerInBackground() {
+	private String registerInBackground() {
 
 		String msg = "";
+		String GCMregID= "";
 		try {
 
 			if (gcm == null) {
@@ -197,25 +199,12 @@ public class Verification extends Activity {
 				Log.d("GCM", "GCM is intialized");
 			}
 
-			regid = gcm.register(SENDER_ID);
+			GCMregID = gcm.register(this.SENDER_ID);
 
 			Log.d("Background RegID", regid);
 
 			msg = "Device registered, registration ID=" + regid;
-
-			// You should send the registration ID to your server over HTTP, so
-			// it
-			// can use GCM/HTTP or CCS to send messages to your app.
-			 sendRegistrationId(regid);
-
-			// For this demo: we don't need to send it because the device will
-			// send
-			// upstream messages to a server that echo back the message using
-			// the
-			// 'from' address in the message.
-
-			// Persist the regID - no need to register again.
-			storeRegistrationId(regid);
+			
 		} catch (IOException ex) {
 			// msg = "Error :" + ex.getMessage();
 			ex.printStackTrace();
@@ -223,6 +212,7 @@ public class Verification extends Activity {
 			// Require the user to click a button again, or perform
 			// exponential back-off.
 		}
+		return GCMregID;
 	}
 
 	private void sendRegistrationId(String regid) {
@@ -286,10 +276,17 @@ public class Verification extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			doverifiy(PhoneNumber, VerficationCode);
+			String ID = "";
 			if (status == 1) {
-
 				sendlocation();
-				registergcm();
+				boolean x = registergcm();
+				if(x){
+				ID = registerInBackground();
+				}
+				if(!ID.equals(null)){
+				sendRegistrationId(ID);
+				storeRegistrationId(ID);
+				}
 			}
 			return null;
 		}
@@ -298,10 +295,14 @@ public class Verification extends Activity {
 		protected void onPostExecute(Void result) {
 			if (dialog.isShowing()) {
 				dialog.dismiss();
+				startnextactivity();
 			}
 
 		}
 
 	}
+@Override
+public void onBackPressed() {
 
+}
 }
