@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
@@ -42,7 +43,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	String lat = null;
 	String lon = null;
 	TextView tip, maptext, settingstext, contacttext;
-
+	SharedPreferences users;
 	// ShowcaseView sv;
 	// final GoogleAnalyticsTracker tracker =
 	@Override
@@ -56,6 +57,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		EasyTracker.getInstance(this).activityStart(this);
+		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
 		progBar = (ProgressBar) findViewById(R.id.progressBar1);
 		try {
 			
@@ -77,7 +79,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			contacttext = (TextView) findViewById(R.id.textView3);
 			Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
 			tip.setTypeface(font);
-			
 			maptext.setTypeface(font);
 			settingstext.setTypeface(font);
 			contacttext.setTypeface(font);
