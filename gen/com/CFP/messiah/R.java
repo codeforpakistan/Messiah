@@ -1516,7 +1516,7 @@ containing a value of this type.
         public static final int IVTOD=0x7f06007e;
         public static final int LinearLayout1=0x7f060056;
         public static final int LinearLayout2=0x7f06005a;
-        public static final int RelativeLayout1=0x7f060064;
+        public static final int RelativeLayout1=0x7f060063;
         public static final int SpeedDialList=0x7f060084;
         public static final int TVInsantly=0x7f06008d;
         public static final int TVMessiahCommunity=0x7f060076;
@@ -1598,7 +1598,7 @@ containing a value of this type.
         public static final int laptop_group=0x7f06006c;
         public static final int layout_demo_buttons=0x7f060052;
         public static final int linearLayout2=0x7f06005b;
-        public static final int list=0x7f060063;
+        public static final int list=0x7f060064;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06003b;
         public static final int map=0x7f060072;

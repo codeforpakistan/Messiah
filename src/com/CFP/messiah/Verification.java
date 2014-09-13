@@ -40,7 +40,7 @@ public class Verification extends Activity {
 	GoogleCloudMessaging gcm;
 	static String regid = "";
 	Context context;
-	String SENDER_ID = "344765759058";
+	static String SENDER_ID = "344765759058";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -207,7 +207,7 @@ public class Verification extends Activity {
 			
 		} catch (IOException ex) {
 			// msg = "Error :" + ex.getMessage();
-			ex.printStackTrace();
+			Log.e("GCM",ex.toString());
 			// If there is an error, don't just keep trying to register.
 			// Require the user to click a button again, or perform
 			// exponential back-off.
@@ -228,27 +228,17 @@ public class Verification extends Activity {
 	private String getRegistrationId(Context context) {
 		String registrationId = users.getString("registration_id", "");
 		if (registrationId.isEmpty()) {
-			// Log if the Registration is not found is the SharedPreferences.
-			// Log.i("FireFlyActivity", "Registration not found.");
+			
 			return "";
 		}
-		// Check if app was updated; if so, it must clear the registration ID
-		// since the existing regID is not guaranteed to work with the new
-		// app version.
-		// int registeredVersion = prefs.getInt(PROPERTY_APP_VERSION,
-		// Integer.MIN_VALUE);
-		// int currentVersion = getAppVersion(context);
-		// if (registeredVersion != currentVersion) {
-		// //Log.i("FireFlyActivity", "App version changed.");
-		// return "";
-		// }
+		
 		return registrationId;
 	}
 
 	private boolean checkPlayServices() {
 		int resultCode = GooglePlayServicesUtil
 				.isGooglePlayServicesAvailable(this);
-		// Log.d("CheckPlayService", "This is so tough :/");
+		
 		if (resultCode != ConnectionResult.SUCCESS) {
 			if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
 				GooglePlayServicesUtil.getErrorDialog(resultCode, this,
@@ -281,16 +271,21 @@ public class Verification extends Activity {
 				sendlocation();
 				boolean x = registergcm();
 				if(x){
-				ID = registerInBackground();
+				try {
+					ID = gcm.register(Verification.SENDER_ID);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				}
 				if(!ID.equals(null)){
+				
 				sendRegistrationId(ID);
 				storeRegistrationId(ID);
 				}
 			}
 			return null;
 		}
-
 		@Override
 		protected void onPostExecute(Void result) {
 			if (dialog.isShowing()) {

@@ -7,6 +7,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -94,7 +95,9 @@ public class ContactView extends Activity {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			final View v = inflater.inflate(R.layout.contactview_listitem,
 					parent, false);
+			Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
 			TextView tv = (TextView) v.findViewById(R.id.tvContact);
+			tv.setTypeface(font);
 			tv.setText(names.get(position));
 			CheckBox cb = (CheckBox) v.findViewById(R.id.cbContact);
 			final int pos = position;

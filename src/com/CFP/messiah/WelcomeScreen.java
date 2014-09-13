@@ -50,7 +50,7 @@ public class WelcomeScreen extends Activity{
 			@Override
 			public void onClick(View v) {
 			//startActivity(new Intent(WelcomeScreen.this,ContactView.class));
-				startActivity(new Intent(WelcomeScreen.this,MessiahRegistertion.class));
+				startActivity(new Intent(WelcomeScreen.this,ContactView.class));
 			}
 		});
 		showDialog(0);

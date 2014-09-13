@@ -374,7 +374,7 @@ int id IVEdit 0x7f060075
 int id IVTOD 0x7f06007e
 int id LinearLayout1 0x7f060056
 int id LinearLayout2 0x7f06005a
-int id RelativeLayout1 0x7f060064
+int id RelativeLayout1 0x7f060063
 int id SpeedDialList 0x7f060084
 int id TVInsantly 0x7f06008d
 int id TVMessiahCommunity 0x7f060076
@@ -456,7 +456,7 @@ int id ivContact 0x7f060066
 int id laptop_group 0x7f06006c
 int id layout_demo_buttons 0x7f060052
 int id linearLayout2 0x7f06005b
-int id list 0x7f060063
+int id list 0x7f060064
 int id listMode 0x7f060001
 int id list_item 0x7f06003b
 int id map 0x7f060072
