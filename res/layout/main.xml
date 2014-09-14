@@ -76,7 +76,7 @@
             android:id="@+id/btnAddContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#34495E"
+            android:background="@drawable/lengthy_button_selection"
             android:text="Add Contact"
             android:textColor="#ECF0F1"
             android:textSize="20sp" />

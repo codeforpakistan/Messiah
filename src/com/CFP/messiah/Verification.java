@@ -29,8 +29,8 @@ public class Verification extends Activity {
 	EditText Verfication;
 	Button Verify;
 	String PhoneNumber, VerficationCode;
-	TextView tv1,tv2,tv3,tv4;
-	int status,status1;
+	TextView tv1, tv2, tv3, tv4;
+	int status, status1;
 	SharedPreferences users;
 	Editor editor;
 	double Latitude, Longitude;
@@ -47,10 +47,10 @@ public class Verification extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.verification);
-		tv1 = (TextView)findViewById(R.id.TVverification);
-		tv2 = (TextView)findViewById(R.id.TVcode);
-		tv3 = (TextView)findViewById(R.id.TVreceive);
-		tv4 = (TextView)findViewById(R.id.TVfrom);
+		tv1 = (TextView) findViewById(R.id.TVverification);
+		tv2 = (TextView) findViewById(R.id.TVcode);
+		tv3 = (TextView) findViewById(R.id.TVreceive);
+		tv4 = (TextView) findViewById(R.id.TVfrom);
 		Typeface font = Typeface.createFromAsset(getAssets(), "rcl.ttf");
 		Typeface font1 = Typeface.createFromAsset(getAssets(), "rcb.ttf");
 		tv1.setTypeface(font1);
@@ -76,7 +76,7 @@ public class Verification extends Activity {
 				if (VerficationCode.length() == 7) {
 					if (CheckNetwork.isInternetAvailable(Verification.this)) {
 						new SetConnection().execute();
-						
+
 					} else {
 
 						Toast.makeText(getApplicationContext(),
@@ -90,6 +90,8 @@ public class Verification extends Activity {
 
 		});
 
+		 registergcm();
+		
 	}
 
 	private void doverifiy(String PhoneNumber, String VerficationCode) {
@@ -172,47 +174,57 @@ public class Verification extends Activity {
 
 	}
 
-	private boolean registergcm() {
+	private void registergcm() {
 		if (checkPlayServices()) {
 			gcm = GoogleCloudMessaging.getInstance(Verification.this);
 			regid = getRegistrationId(context);
-
+			
 			Log.d("RegID", "RegId is intialized");
 			if (regid.isEmpty()) {
-				return true;			
+				registerInBackground();
 			}
 		} else {
 			Log.d("Messiah", "No valid Google Play Services APK found.");
 		}
-		return false;
+
 	}
 
-	private String registerInBackground() {
+	private void registerInBackground() {
+		new AsyncTask<Void, Void, String>() {
 
-		String msg = "";
-		String GCMregID= "";
-		try {
+			protected String doInBackground(Void... params) {
 
-			if (gcm == null) {
-				Log.d("Background", "GCM is null");
-				gcm = GoogleCloudMessaging.getInstance(context);
-				Log.d("GCM", "GCM is intialized");
+				String msg = "";
+				String GCMregID = "";
+				try {
+
+					if (gcm == null) {
+						Log.d("Background", "GCM is null");
+						gcm = GoogleCloudMessaging.getInstance(context);
+						Log.d("GCM", "GCM is intialized");
+					}
+
+					
+					gcm.unregister();
+					GCMregID = gcm.register(SENDER_ID);
+					
+					Log.d("Background RegID", regid);
+
+					msg = "Device registered, registration ID=" + regid;
+					
+					storeRegistrationId(GCMregID);
+
+				} catch (IOException ex) {
+					// msg = "Error :" + ex.getMessage();
+					Log.e("GCM", ex.toString());
+					// If there is an error, don't just keep trying to register.
+					// Require the user to click a button again, or perform
+					// exponential back-off.
+				}
+				return msg;
 			}
+		}.execute(null, null, null);
 
-			GCMregID = gcm.register(this.SENDER_ID);
-
-			Log.d("Background RegID", regid);
-
-			msg = "Device registered, registration ID=" + regid;
-			
-		} catch (IOException ex) {
-			// msg = "Error :" + ex.getMessage();
-			Log.e("GCM",ex.toString());
-			// If there is an error, don't just keep trying to register.
-			// Require the user to click a button again, or perform
-			// exponential back-off.
-		}
-		return GCMregID;
 	}
 
 	private void sendRegistrationId(String regid) {
@@ -228,17 +240,17 @@ public class Verification extends Activity {
 	private String getRegistrationId(Context context) {
 		String registrationId = users.getString("registration_id", "");
 		if (registrationId.isEmpty()) {
-			
+
 			return "";
 		}
-		
+
 		return registrationId;
 	}
 
 	private boolean checkPlayServices() {
 		int resultCode = GooglePlayServicesUtil
 				.isGooglePlayServicesAvailable(this);
-		
+
 		if (resultCode != ConnectionResult.SUCCESS) {
 			if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
 				GooglePlayServicesUtil.getErrorDialog(resultCode, this,
@@ -265,27 +277,19 @@ public class Verification extends Activity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+
+			
+
 			doverifiy(PhoneNumber, VerficationCode);
-			String ID = "";
+
 			if (status == 1) {
+				editor.putBoolean("Verfication" , true).commit();
 				sendlocation();
-				boolean x = registergcm();
-				if(x){
-				try {
-					ID = gcm.register(Verification.SENDER_ID);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				}
-				if(!ID.equals(null)){
-				
-				sendRegistrationId(ID);
-				storeRegistrationId(ID);
-				}
+				sendRegistrationId(users.getString("registration_id", ""));
 			}
 			return null;
 		}
+
 		@Override
 		protected void onPostExecute(Void result) {
 			if (dialog.isShowing()) {
@@ -296,8 +300,9 @@ public class Verification extends Activity {
 		}
 
 	}
-@Override
-public void onBackPressed() {
 
-}
+	@Override
+	public void onBackPressed() {
+
+	}
 }

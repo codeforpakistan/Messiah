@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Handler mHandler = new Handler();;
 	private int mProgressStatus = 0;
 	String lat = null;
+	
 	String lon = null;
 	TextView tip, maptext, settingstext, contacttext;
 	SharedPreferences users;

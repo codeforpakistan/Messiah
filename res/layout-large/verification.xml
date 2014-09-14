@@ -7,10 +7,10 @@
     android:orientation="vertical" >
 
     <LinearLayout
-       android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" 
-         android:layout_weight="0.02">
+        android:layout_weight="0.02"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView1"
@@ -21,14 +21,13 @@
             android:text="Verification"
             android:textColor="#ffffff"
             android:textSize="25sp" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-         android:layout_weight="0.07" >
+        android:layout_weight="0.07"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView2"
@@ -43,8 +42,8 @@
             android:id="@+id/textView3"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="from Messiah. Kindly enter the"
             android:gravity="center_horizontal"
+            android:text="from Messiah. Kindly enter the"
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
@@ -52,8 +51,8 @@
             android:id="@+id/textView4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text=" verification code in the box below."
             android:gravity="center_horizontal"
+            android:text=" verification code in the box below."
             android:textColor="#ffffff"
             android:textSize="20sp" />
     </LinearLayout>
@@ -61,9 +60,9 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_weight="0.7"
-         android:padding="30dp" >
+        android:orientation="vertical"
+        android:padding="30dp" >
 
         <EditText
             android:id="@+id/etVerfication"
@@ -76,7 +75,6 @@
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="25sp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -89,11 +87,10 @@
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:layout_marginBottom="25dp"
-            android:background="#2c3e50"
+            android:background="@drawable/lengthy_button_selection"
             android:text="Verify"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
-
     </LinearLayout>
 
 </LinearLayout>

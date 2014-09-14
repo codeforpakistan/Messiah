@@ -7,10 +7,10 @@
     android:orientation="vertical" >
 
     <LinearLayout
-       android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" 
-         android:layout_weight="0.02">
+        android:layout_weight="0.02"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/TVverification"
@@ -21,14 +21,13 @@
             android:text="Verification"
             android:textColor="#ffffff"
             android:textSize="30sp" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-         android:layout_weight="0.07" >
+        android:layout_weight="0.07"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/TVreceive"
@@ -43,8 +42,8 @@
             android:id="@+id/TVfrom"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="from Messiah. Kindly enter the"
             android:gravity="center_horizontal"
+            android:text="from Messiah. Kindly enter the"
             android:textColor="#ffffff"
             android:textSize="25sp" />
 
@@ -52,8 +51,8 @@
             android:id="@+id/TVcode"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text=" verification code in the box below."
             android:gravity="center_horizontal"
+            android:text=" verification code in the box below."
             android:textColor="#ffffff"
             android:textSize="25sp" />
     </LinearLayout>
@@ -61,47 +60,46 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_weight="0.7"
-         android:padding="30dp" >
+        android:orientation="vertical"
+        android:padding="30dp" >
 
         <EditText
             android:id="@+id/etVerfication"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:background="#00000000"
+            android:ems="10"
             android:hint="Verification Code"
             android:lines="1"
             android:singleLine="true"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="20sp" />
-         <View
+
+        <View
             android:layout_width="fill_parent"
             android:layout_height="2.2dp"
             android:layout_marginTop="5dp"
             android:background="#ECF0F1" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-         android:layout_weight="0.2"
-        android:gravity="center" >
+        android:layout_weight="0.2"
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <Button
             android:id="@+id/btnVerify"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/lengthy_button_selection"
             android:padding="15dp"
-            android:background="#2c3e50"
             android:text="Verify >"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
-
     </LinearLayout>
 
 </LinearLayout>

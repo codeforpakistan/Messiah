@@ -73,7 +73,7 @@
             android:id="@+id/btnAddContactswelcome"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#2c3e50"
+            android:background="@drawable/lengthy_button_selection"
             android:padding="20dp"
             android:text="Select Your Messiahs >"
             android:textColor="#FFFFFF"
