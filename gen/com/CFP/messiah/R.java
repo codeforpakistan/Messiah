@@ -1184,7 +1184,7 @@ containing a value of this type.
         public static final int ga_reportUncaughtExceptions=0x7f070007;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f08001a;
+        public static final int abc_search_url_text_holo=0x7f08001c;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
@@ -1200,8 +1200,10 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f080009;
         public static final int common_signin_btn_light_text_focused=0x7f08000a;
         public static final int common_signin_btn_light_text_pressed=0x7f080008;
-        public static final int common_signin_btn_text_dark=0x7f08001b;
-        public static final int common_signin_btn_text_light=0x7f08001c;
+        public static final int common_signin_btn_text_dark=0x7f08001d;
+        public static final int common_signin_btn_text_light=0x7f08001e;
+        public static final int midnightblue=0x7f08001b;
+        public static final int midnightblue_light=0x7f08001a;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f080012;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -1220,8 +1222,8 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f080014;
         public static final int wallet_holo_blue_light=0x7f080018;
         public static final int wallet_link_text_light=0x7f080019;
-        public static final int wallet_primary_text_holo_light=0x7f08001d;
-        public static final int wallet_secondary_text_holo_dark=0x7f08001e;
+        public static final int wallet_primary_text_holo_light=0x7f08001f;
+        public static final int wallet_secondary_text_holo_dark=0x7f080020;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1486,23 +1488,24 @@ containing a value of this type.
         public static final int icon4_filled=0x7f020085;
         public static final int icon5=0x7f020086;
         public static final int icon5_filled=0x7f020087;
-        public static final int map_icon=0x7f020088;
-        public static final int map_loc=0x7f020089;
-        public static final int maps=0x7f02008a;
-        public static final int off=0x7f02008b;
-        public static final int on=0x7f02008c;
-        public static final int overlay=0x7f02008d;
-        public static final int overlay_circle=0x7f02008e;
-        public static final int phone_icon=0x7f02008f;
-        public static final int powered_by_google_dark=0x7f020090;
-        public static final int powered_by_google_light=0x7f020091;
-        public static final int progressbar=0x7f020092;
-        public static final int red_loc=0x7f020093;
-        public static final int rounded_corner=0x7f020094;
-        public static final int settings=0x7f020095;
-        public static final int settings_icon=0x7f020096;
-        public static final int speeddial=0x7f020097;
-        public static final int welcome=0x7f020098;
+        public static final int lengthy_button_selection=0x7f020088;
+        public static final int map_icon=0x7f020089;
+        public static final int map_loc=0x7f02008a;
+        public static final int maps=0x7f02008b;
+        public static final int off=0x7f02008c;
+        public static final int on=0x7f02008d;
+        public static final int overlay=0x7f02008e;
+        public static final int overlay_circle=0x7f02008f;
+        public static final int phone_icon=0x7f020090;
+        public static final int powered_by_google_dark=0x7f020091;
+        public static final int powered_by_google_light=0x7f020092;
+        public static final int progressbar=0x7f020093;
+        public static final int red_loc=0x7f020094;
+        public static final int rounded_corner=0x7f020095;
+        public static final int settings=0x7f020096;
+        public static final int settings_icon=0x7f020097;
+        public static final int speeddial=0x7f020098;
+        public static final int welcome=0x7f020099;
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f06004e;

@@ -115,7 +115,7 @@
             android:id="@+id/btnRegister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#2c3e50"
+           android:background="@drawable/lengthy_button_selection"
             android:text="Register >"
             android:padding="15dp"
             android:textColor="#FFFFFF"

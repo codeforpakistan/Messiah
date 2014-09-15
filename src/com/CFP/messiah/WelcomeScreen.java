@@ -19,7 +19,11 @@ public class WelcomeScreen extends Activity{
 	@Override
 	protected void onStart() {
 		super.onStart();
-		
+		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		if(users.getBoolean("Verfication", false)){
+			startActivity(new Intent(WelcomeScreen.this,MainActivity.class));
+			
+		}
 		
 		
 	}
@@ -27,11 +31,7 @@ public class WelcomeScreen extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_screen);
-		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
-		if(users.contains("Phonenumber")){
-			startActivity(new Intent(WelcomeScreen.this,MainActivity.class));
-			
-		}
+		
 		
 		tv1 = (TextView)findViewById(R.id.TVWelcome);
 		tv2 = (TextView)findViewById(R.id.TVInsantly);

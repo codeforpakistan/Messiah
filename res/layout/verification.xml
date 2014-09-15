@@ -95,7 +95,7 @@
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:layout_marginBottom="25dp"
-            android:background="#2c3e50"
+            android:background="@drawable/lengthy_button_selection"
             android:text="Verify"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
