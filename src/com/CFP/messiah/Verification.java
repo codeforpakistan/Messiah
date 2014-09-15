@@ -40,7 +40,7 @@ public class Verification extends Activity {
 	GoogleCloudMessaging gcm;
 	static String regid = "";
 	Context context;
-	static String SENDER_ID = "344765759058";
+	static String SENDER_ID = "179679670686";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +90,8 @@ public class Verification extends Activity {
 
 		});
 
-		 registergcm();
-		
+		registergcm();
+
 	}
 
 	private void doverifiy(String PhoneNumber, String VerficationCode) {
@@ -178,7 +178,7 @@ public class Verification extends Activity {
 		if (checkPlayServices()) {
 			gcm = GoogleCloudMessaging.getInstance(Verification.this);
 			regid = getRegistrationId(context);
-			
+			Log.d("RegID", regid);
 			Log.d("RegID", "RegId is intialized");
 			if (regid.isEmpty()) {
 				registerInBackground();
@@ -196,6 +196,7 @@ public class Verification extends Activity {
 
 				String msg = "";
 				String GCMregID = "";
+
 				try {
 
 					if (gcm == null) {
@@ -204,19 +205,20 @@ public class Verification extends Activity {
 						Log.d("GCM", "GCM is intialized");
 					}
 
-					
-					gcm.unregister();
+					// gcm.unregister();
+
 					GCMregID = gcm.register(SENDER_ID);
-					
+
 					Log.d("Background RegID", regid);
 
 					msg = "Device registered, registration ID=" + regid;
-					
+
 					storeRegistrationId(GCMregID);
 
 				} catch (IOException ex) {
 					// msg = "Error :" + ex.getMessage();
 					Log.e("GCM", ex.toString());
+
 					// If there is an error, don't just keep trying to register.
 					// Require the user to click a button again, or perform
 					// exponential back-off.
@@ -278,12 +280,10 @@ public class Verification extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 
-			
-
 			doverifiy(PhoneNumber, VerficationCode);
 
 			if (status == 1) {
-				editor.putBoolean("Verfication" , true).commit();
+				editor.putBoolean("Verfication", true).commit();
 				sendlocation();
 				sendRegistrationId(users.getString("registration_id", ""));
 			}

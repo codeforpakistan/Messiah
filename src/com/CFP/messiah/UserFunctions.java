@@ -6,6 +6,9 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
 public class UserFunctions {
@@ -18,11 +21,14 @@ public class UserFunctions {
 	private static String GetMessiah = "http://" + IP + "/inc/api.get_nearby_messiah_controller.php/";
 	private static String SendGCMId = "http://" + IP + "/inc/api.gcm_reg_controller.php/";
 	private static String SendHelpRequest = "http://" + IP + "/inc/api.gcm_request_controller.php/";
-	
+	SharedPreferences users;
+	Editor editor;
 		// constructor
 	public UserFunctions() {
 		jsonParser = new JSONParser();
+		
 	}
+	
 	public JSONObject Registertion(String FullName, String PhoneNumber) {
 		// Building Parameters
 		List<NameValuePair> params = new ArrayList<NameValuePair>(2);

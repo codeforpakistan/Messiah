@@ -9,7 +9,7 @@ public final class CommonUtilities {
     static final String SERVER_URL = "http://192.168.1.5:8383/gcm_server_php/register.php"; 
 
     // Google project id
-    static final String SENDER_ID = "344765759058"; 
+    static final String SENDER_ID = "179679670686"; 
 
     /**
      * Tag used on log messages.

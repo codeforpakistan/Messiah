@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:ems="10"
-            android:hint="Phone Number"
+            android:hint="923XXXXXXXXX"
             android:lines="1"
             android:singleLine="true"
             android:textColor="#ffffff"
