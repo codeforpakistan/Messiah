@@ -1469,53 +1469,56 @@ containing a value of this type.
         public static final int community=0x7f020072;
         public static final int contact=0x7f020073;
         public static final int contact_icon=0x7f020074;
-        public static final int download=0x7f020075;
-        public static final int edit_icon=0x7f020076;
-        public static final int emergencybutton=0x7f020077;
-        public static final int emergencybutton_pressed=0x7f020078;
-        public static final int emergencybuttoneffect=0x7f020079;
-        public static final int helpui=0x7f02007a;
-        public static final int ic_action_accept=0x7f02007b;
-        public static final int ic_launcher=0x7f02007c;
-        public static final int ic_lockscreen_handle_pressed=0x7f02007d;
-        public static final int ic_plusone_medium_off_client=0x7f02007e;
-        public static final int ic_plusone_small_off_client=0x7f02007f;
-        public static final int ic_plusone_standard_off_client=0x7f020080;
-        public static final int ic_plusone_tall_off_client=0x7f020081;
-        public static final int icon2=0x7f020082;
-        public static final int icon2_filled=0x7f020083;
-        public static final int icon4=0x7f020084;
-        public static final int icon4_filled=0x7f020085;
-        public static final int icon5=0x7f020086;
-        public static final int icon5_filled=0x7f020087;
-        public static final int lengthy_button_selection=0x7f020088;
-        public static final int map_icon=0x7f020089;
-        public static final int map_loc=0x7f02008a;
-        public static final int maps=0x7f02008b;
-        public static final int off=0x7f02008c;
-        public static final int on=0x7f02008d;
-        public static final int overlay=0x7f02008e;
-        public static final int overlay_circle=0x7f02008f;
-        public static final int phone_icon=0x7f020090;
-        public static final int powered_by_google_dark=0x7f020091;
-        public static final int powered_by_google_light=0x7f020092;
-        public static final int progressbar=0x7f020093;
-        public static final int red_loc=0x7f020094;
-        public static final int rounded_corner=0x7f020095;
-        public static final int settings=0x7f020096;
-        public static final int settings_icon=0x7f020097;
-        public static final int speeddial=0x7f020098;
-        public static final int welcome=0x7f020099;
+        public static final int contacts_selection_empty=0x7f020075;
+        public static final int contacts_selection_fill=0x7f020076;
+        public static final int download=0x7f020077;
+        public static final int edit_icon=0x7f020078;
+        public static final int emergencybutton=0x7f020079;
+        public static final int emergencybutton_pressed=0x7f02007a;
+        public static final int emergencybuttoneffect=0x7f02007b;
+        public static final int helpui=0x7f02007c;
+        public static final int ic_action_accept=0x7f02007d;
+        public static final int ic_launcher=0x7f02007e;
+        public static final int ic_lockscreen_handle_pressed=0x7f02007f;
+        public static final int ic_plusone_medium_off_client=0x7f020080;
+        public static final int ic_plusone_small_off_client=0x7f020081;
+        public static final int ic_plusone_standard_off_client=0x7f020082;
+        public static final int ic_plusone_tall_off_client=0x7f020083;
+        public static final int icon2=0x7f020084;
+        public static final int icon2_filled=0x7f020085;
+        public static final int icon4=0x7f020086;
+        public static final int icon4_filled=0x7f020087;
+        public static final int icon5=0x7f020088;
+        public static final int icon5_filled=0x7f020089;
+        public static final int lengthy_button_selection=0x7f02008a;
+        public static final int map_icon=0x7f02008b;
+        public static final int map_loc=0x7f02008c;
+        public static final int maps=0x7f02008d;
+        public static final int notification_icon=0x7f02008e;
+        public static final int off=0x7f02008f;
+        public static final int on=0x7f020090;
+        public static final int overlay=0x7f020091;
+        public static final int overlay_circle=0x7f020092;
+        public static final int phone_icon=0x7f020093;
+        public static final int powered_by_google_dark=0x7f020094;
+        public static final int powered_by_google_light=0x7f020095;
+        public static final int progressbar=0x7f020096;
+        public static final int red_loc=0x7f020097;
+        public static final int rounded_corner=0x7f020098;
+        public static final int settings=0x7f020099;
+        public static final int settings_icon=0x7f02009a;
+        public static final int speeddial=0x7f02009b;
+        public static final int welcome=0x7f02009c;
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f06004e;
-        public static final int Contactlist=0x7f06006f;
+        public static final int Contactlist=0x7f06006e;
         public static final int IVAD=0x7f060081;
         public static final int IVADM=0x7f060050;
         public static final int IVBM=0x7f060080;
         public static final int IVDT=0x7f060082;
-        public static final int IVDial=0x7f060074;
-        public static final int IVEdit=0x7f060075;
+        public static final int IVDial=0x7f060073;
+        public static final int IVEdit=0x7f060074;
         public static final int IVTOD=0x7f06007e;
         public static final int LinearLayout1=0x7f060056;
         public static final int LinearLayout2=0x7f06005a;
@@ -1550,7 +1553,7 @@ containing a value of this type.
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
         public static final int book_now=0x7f060028;
-        public static final int btnAddContact=0x7f060071;
+        public static final int btnAddContact=0x7f060070;
         public static final int btnAddContactSpeed=0x7f060085;
         public static final int btnAddContactswelcome=0x7f060090;
         public static final int btnContact=0x7f060060;
@@ -1559,14 +1562,13 @@ containing a value of this type.
         public static final int btnSMS=0x7f060058;
         public static final int btnSettings=0x7f06005e;
         public static final int btnVerify=0x7f06008b;
-        public static final int button1=0x7f06006a;
-        public static final int button2=0x7f06006b;
-        public static final int button3=0x7f060069;
+        public static final int button1=0x7f060069;
+        public static final int button2=0x7f06006a;
+        public static final int button3=0x7f060068;
         public static final int button_demo_finish=0x7f060054;
         public static final int buyButton=0x7f060022;
         public static final int buy_now=0x7f060027;
         public static final int buy_with_google=0x7f060026;
-        public static final int cbContact=0x7f060065;
         public static final int checkbox=0x7f06003f;
         public static final int checkbox_demo_never_again=0x7f060053;
         public static final int classic=0x7f060029;
@@ -1579,7 +1581,7 @@ containing a value of this type.
         public static final int editText1=0x7f060091;
         public static final int editText2=0x7f060092;
         public static final int edit_query=0x7f060042;
-        public static final int empty=0x7f060070;
+        public static final int empty=0x7f06006f;
         public static final int end=0x7f060013;
         public static final int etFullName=0x7f06007a;
         public static final int etPhoneNumber=0x7f06007b;
@@ -1595,16 +1597,17 @@ containing a value of this type.
         public static final int icon=0x7f06003c;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060039;
-        public static final int imageView1=0x7f06006d;
-        public static final int imageView2=0x7f06006e;
-        public static final int ivContact=0x7f060066;
-        public static final int laptop_group=0x7f06006c;
+        public static final int imageView1=0x7f06006c;
+        public static final int imageView2=0x7f06006d;
+        public static final int ivContact=0x7f060065;
+        public static final int laptop_group=0x7f06006b;
         public static final int layout_demo_buttons=0x7f060052;
         public static final int linearLayout2=0x7f06005b;
         public static final int list=0x7f060064;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06003b;
-        public static final int map=0x7f060072;
+        public static final int map=0x7f060071;
+        public static final int map1=0x7f060075;
         public static final int match_parent=0x7f060024;
         public static final int middle=0x7f060012;
         public static final int monochrome=0x7f06002b;
@@ -1647,12 +1650,12 @@ containing a value of this type.
         public static final int top_action_bar=0x7f060032;
         public static final int tvADM=0x7f06004f;
         public static final int tvBM=0x7f06007f;
-        public static final int tvContact=0x7f060067;
-        public static final int tvName=0x7f060073;
+        public static final int tvContact=0x7f060066;
+        public static final int tvName=0x7f060072;
         public static final int tvSettings=0x7f060083;
         public static final int tvTOD=0x7f06007d;
         public static final int tvmap=0x7f060062;
-        public static final int txt1=0x7f060068;
+        public static final int txt1=0x7f060067;
         public static final int up=0x7f060033;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;
@@ -1724,15 +1727,16 @@ containing a value of this type.
         public static final int main=0x7f030024;
         public static final int maps=0x7f030025;
         public static final int messiah_contacts=0x7f030026;
-        public static final int messiah_registertion=0x7f030027;
-        public static final int notifications_child=0x7f030028;
-        public static final int settings=0x7f030029;
-        public static final int settings_listitem=0x7f03002a;
-        public static final int speed_dial=0x7f03002b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002c;
-        public static final int verification=0x7f03002d;
-        public static final int welcome_screen=0x7f03002e;
-        public static final int yourprofile_child=0x7f03002f;
+        public static final int messiah_need_maps=0x7f030027;
+        public static final int messiah_registertion=0x7f030028;
+        public static final int notifications_child=0x7f030029;
+        public static final int settings=0x7f03002a;
+        public static final int settings_listitem=0x7f03002b;
+        public static final int speed_dial=0x7f03002c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002d;
+        public static final int verification=0x7f03002e;
+        public static final int welcome_screen=0x7f03002f;
+        public static final int yourprofile_child=0x7f030030;
     }
     public static final class menu {
         public static final int accident_warning=0x7f0e0000;
@@ -1743,8 +1747,8 @@ containing a value of this type.
         public static final int alarm=0x7f050000;
     }
     public static final class string {
-        public static final int MessiahDescription=0x7f0b002c;
-        public static final int Step1=0x7f0b0041;
+        public static final int MessiahDescription=0x7f0b002d;
+        public static final int Step1=0x7f0b0042;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0b0001;
@@ -1785,10 +1789,18 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000b;
-        public static final int action_settings=0x7f0b002a;
-        public static final int already_registered=0x7f0b002f;
-        public static final int app_name=0x7f0b0028;
-        public static final int arrow=0x7f0b003e;
+        public static final int action_settings=0x7f0b002b;
+        public static final int already_registered=0x7f0b0030;
+        public static final int app_name=0x7f0b0029;
+        public static final int arrow=0x7f0b003f;
+        /** 
+  This file is automatically generated by Crashlytics to uniquely 
+  identify individual builds of your Android application.
+
+  Do NOT modify, delete, or commit to source control!
+
+         */
+        public static final int com_crashlytics_android_build_id=0x7f0b0028;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -1878,34 +1890,34 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f0b0025;
-        public static final int error_config=0x7f0b002e;
+        public static final int error_config=0x7f0b002f;
         /** Replace placeholder ID with your tracking ID
          */
         public static final int ga_trackingId=0x7f0b0027;
-        public static final int gcm_deleted=0x7f0b0035;
-        public static final int gcm_error=0x7f0b0033;
-        public static final int gcm_message=0x7f0b0032;
-        public static final int gcm_recoverable_error=0x7f0b0034;
-        public static final int gcm_registered=0x7f0b0030;
-        public static final int gcm_unregistered=0x7f0b0031;
-        public static final int hello_world=0x7f0b0029;
-        public static final int hover_message_entered_at=0x7f0b0042;
-        public static final int options_clear=0x7f0b003c;
-        public static final int options_exit=0x7f0b003d;
-        public static final int options_register=0x7f0b003a;
-        public static final int options_unregister=0x7f0b003b;
-        public static final int server_register_error=0x7f0b0038;
-        public static final int server_registered=0x7f0b0036;
-        public static final int server_registering=0x7f0b002b;
-        public static final int server_unregister_error=0x7f0b0039;
-        public static final int server_unregistered=0x7f0b0037;
-        public static final int text_move_demo_step_1=0x7f0b003f;
-        public static final int text_move_demo_step_2=0x7f0b0040;
+        public static final int gcm_deleted=0x7f0b0036;
+        public static final int gcm_error=0x7f0b0034;
+        public static final int gcm_message=0x7f0b0033;
+        public static final int gcm_recoverable_error=0x7f0b0035;
+        public static final int gcm_registered=0x7f0b0031;
+        public static final int gcm_unregistered=0x7f0b0032;
+        public static final int hello_world=0x7f0b002a;
+        public static final int hover_message_entered_at=0x7f0b0043;
+        public static final int options_clear=0x7f0b003d;
+        public static final int options_exit=0x7f0b003e;
+        public static final int options_register=0x7f0b003b;
+        public static final int options_unregister=0x7f0b003c;
+        public static final int server_register_error=0x7f0b0039;
+        public static final int server_registered=0x7f0b0037;
+        public static final int server_registering=0x7f0b002c;
+        public static final int server_unregister_error=0x7f0b003a;
+        public static final int server_unregistered=0x7f0b0038;
+        public static final int text_move_demo_step_1=0x7f0b0040;
+        public static final int text_move_demo_step_2=0x7f0b0041;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */
         public static final int wallet_buy_button_place_holder=0x7f0b0026;
-        public static final int welcome=0x7f0b002d;
+        public static final int welcome=0x7f0b002e;
     }
     public static final class style {
         /** 

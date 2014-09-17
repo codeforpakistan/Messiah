@@ -1,126 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/community"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:fillViewport="true"
+    
+    >
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/TVMessiahCommunity"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:padding="10dp"
-            android:text="Messiah Community"
-            android:textColor="#ffffff"
-            android:textSize="30sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.07"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/TVseek"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Seek help and help others in "
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/TVneed"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="need near you by becoming"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/TVpart"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="a part of our community."
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.7"
-        android:orientation="vertical"
-        android:padding="20dp" >
-
-        <EditText
-            android:id="@+id/etFullName"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:ems="10"
-            android:hint="Full Name"
-            android:lines="1"
-            android:singleLine="true"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2.2dp"
-            android:layout_marginTop="5dp"
-            android:background="#ECF0F1" />
-
-        <EditText
-            android:id="@+id/etPhoneNumber"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-             android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="Phone Number"
-            android:lines="1"
-            android:singleLine="true"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2.2dp"
-            android:layout_marginTop="5dp"
-            android:background="#ECF0F1" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:background="@drawable/community"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/btnRegister"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-           android:background="@drawable/lengthy_button_selection"
-            android:text="Register >"
-            android:padding="15dp"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
-        
+            android:layout_weight="0.2"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/TVMessiahCommunity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="Messiah Community"
+                android:textColor="#ffffff"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/TVseek"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Seek help and help others in "
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/TVneed"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="need near you by becoming"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/TVpart"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="a part of our community."
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:orientation="vertical"
+            android:padding="20dp" >
+
+            <EditText
+                android:id="@+id/etFullName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:ems="10"
+                android:hint="Full Name"
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2.2dp"
+                android:layout_marginTop="5dp"
+                android:background="#ECF0F1" />
+
+            <EditText
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:hint="923XXXXXXXXX"
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2.2dp"
+                android:layout_marginTop="5dp"
+                android:background="#ECF0F1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lengthy_button_selection"
+                android:padding="15dp"
+                android:text="Register >"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

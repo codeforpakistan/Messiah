@@ -72,6 +72,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.CFP.messiah.Messiah_Need_Maps"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.CFP.messiah.Settings"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -99,6 +104,7 @@
         <activity
             android:name="com.CFP.messiah.MessiahRegistertion"
             android:label="@string/app_name"
+            
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -139,6 +145,7 @@
         </service>
         <service android:name="com.CFP.messiah.GIntentService" >
         </service>
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="1976bbf9800e14c8291d1bbc5e4c00d5545c6a80"/>
     </application>
 
 </manifest>

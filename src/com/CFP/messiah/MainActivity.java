@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.telephony.SmsManager;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,10 +43,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Handler mHandler = new Handler();;
 	private int mProgressStatus = 0;
 	String lat = null;
-	
 	String lon = null;
 	TextView tip, maptext, settingstext, contacttext;
-	SharedPreferences users;
+	SharedPreferences users, prefs;
+	Editor editor;
+
 	// ShowcaseView sv;
 	// final GoogleAnalyticsTracker tracker =
 	@Override
@@ -52,28 +55,72 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onStop();
 		EasyTracker.getInstance(this).activityStop(this);
 	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		prefs = getSharedPreferences("Settings", 0);
+		editor = prefs.edit();
+		boolean tipcheck = prefs.getBoolean("TIPcheck", false);
+		if (tipcheck) {
+			AlertDialog.Builder builder1 = new AlertDialog.Builder(
+					MainActivity.this);
+			builder1.setMessage(prefs.getString("TIP", null));
+			builder1.setCancelable(true);
+			builder1.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							editor.putBoolean("TIPcheck", false).commit();
+							dialog.cancel();
+						}
+					});
+
+			AlertDialog alert11 = builder1.create();
+			alert11.show();
+		}
+
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		EasyTracker.getInstance(this).activityStart(this);
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		prefs = getSharedPreferences("Settings", 0);
+		editor = prefs.edit();
+		boolean tipcheck = prefs.getBoolean("TIPcheck", false);
+		if (tipcheck) {
+			AlertDialog.Builder builder1 = new AlertDialog.Builder(
+					MainActivity.this);
+			builder1.setMessage(prefs.getString("TIP", null));
+			builder1.setCancelable(true);
+			builder1.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							editor.putBoolean("TIPcheck", false).commit();
+							dialog.cancel();
+						}
+					});
+
+			AlertDialog alert11 = builder1.create();
+			alert11.show();
+		}
+
+		EasyTracker.getInstance(this).activityStart(this);
 		progBar = (ProgressBar) findViewById(R.id.progressBar1);
 		try {
-			
-			
-//			LayoutInflater inflater = (LayoutInflater) this.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-//			View view = inflater.inflate( R.layout.helpoverlay, null );
-//			setContentView(view);
-//			view.setOnClickListener(new View.OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View arg0) {
-//				setContentView(R.layout.activity_main);
-//					
-//				}
-//			});
+
+			// LayoutInflater inflater = (LayoutInflater) this.getSystemService(
+			// Context.LAYOUT_INFLATER_SERVICE );
+			// View view = inflater.inflate( R.layout.helpoverlay, null );
+			// setContentView(view);
+			// view.setOnClickListener(new View.OnClickListener() {
+			//
+			// @Override
+			// public void onClick(View arg0) {
+			// setContentView(R.layout.activity_main);
+			//
+			// }
+			// });
 			tip = (TextView) findViewById(R.id.textView4);
 			maptext = (TextView) findViewById(R.id.tvmap);
 			settingstext = (TextView) findViewById(R.id.textView2);
@@ -97,7 +144,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				public void onClick(View arg0) {
 					AlertDialog.Builder builder1 = new AlertDialog.Builder(
 							MainActivity.this);
-					builder1.setMessage("If your car is on fire, pull over as quickly as it is safe to do so.");
+					builder1.setMessage(prefs.getString("TIP", null));
 					builder1.setCancelable(true);
 					builder1.setPositiveButton("OK",
 							new DialogInterface.OnClickListener() {
@@ -349,8 +396,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-@Override
-public void onBackPressed() {
-	System.exit(0);
-}
+
+	@Override
+	public void onBackPressed() {
+		System.exit(0);
+	}
 }

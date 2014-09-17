@@ -122,9 +122,11 @@ public class Verification extends Activity {
 	private void startnextactivity() {
 		if (status == 1) {
 			startActivity(new Intent(Verification.this, MainActivity.class));
+			Verification.this.finish();
 		} else {
 
-			Toast.makeText(getApplicationContext(), "ERROR", 5000).show();
+			Toast.makeText(getApplicationContext(),
+					"Invalid Verification Code ", 5000).show();
 		}
 
 	}

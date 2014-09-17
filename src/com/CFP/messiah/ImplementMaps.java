@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -283,13 +284,27 @@ public void nomessiahfound(){
 		}
 	}
 	private class SendNotification extends AsyncTask<Void, Void, Void> {
-
+		private ProgressDialog progressDialog;
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = new ProgressDialog(ImplementMaps.this);
+			progressDialog.setMessage("Sending message to Messiah, Please wait...");
+			progressDialog.setIndeterminate(true);
+			progressDialog.show();
+		}
 		@Override
 		protected Void doInBackground(Void... arg0) {
 			sendnotification();
+			
 			return null;
 		}
-
+@Override
+protected void onPostExecute(Void result) {
+	super.onPostExecute(result);
+	progressDialog.setMessage("Message sent to Messiah");
+	progressDialog.hide();
+}
 		}
 	private void sendnotification() {
 		UserFunctions userfunction = new UserFunctions();
