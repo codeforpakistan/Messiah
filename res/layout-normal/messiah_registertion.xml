@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:fillViewport="true"
-    
-    >
+    android:layout_height="fill_parent"
+    android:fillViewport="true" >
 
     <LinearLayout
         android:id="@+id/LinearLayout1"
@@ -82,6 +80,7 @@
                 android:singleLine="true"
                 android:textColor="#ffffff"
                 android:textColorHint="#ffffff"
+                android:textCursorDrawable="@drawable/cursorcolor"
                 android:textSize="20sp" />
 
             <View
@@ -102,6 +101,7 @@
                 android:singleLine="true"
                 android:textColor="#ffffff"
                 android:textColorHint="#ffffff"
+                android:textCursorDrawable="@drawable/cursorcolor"
                 android:textSize="20sp" />
 
             <View

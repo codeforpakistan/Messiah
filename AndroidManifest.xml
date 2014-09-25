@@ -97,7 +97,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.CFP.messiah.ContactView"
+            android:name="com.CFP.messiah.ContactSelection"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>

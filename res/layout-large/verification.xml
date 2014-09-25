@@ -93,6 +93,7 @@
             android:layout_marginBottom="25dp"
             android:background="@drawable/lengthy_button_selection"
             android:text="Verify"
+            android:textCursorDrawable="@drawable/cursorcolor"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>

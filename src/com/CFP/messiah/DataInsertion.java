@@ -124,7 +124,13 @@ public class DataInsertion {
 				.show();
 
 	}
+	public void removeallcontact(Context ctx) {
+		Db = new DbHelper(ctx);
+		database = Db.getWritableDatabase();
+		database.execSQL("DELETE FROM TBL_CONTACT");
+		database.close();
 
+	}
 	public String showmessage(Context ctx, String listItemName) {
 		String msg = null;
 		Db = new DbHelper(ctx);

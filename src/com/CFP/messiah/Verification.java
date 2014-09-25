@@ -61,6 +61,8 @@ public class Verification extends Activity {
 		obj.locationContinousUpdate();
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
 		editor = users.edit();
+		editor.putBoolean("mainhelp", true).commit();
+		editor.putBoolean("maphelp", true).commit();
 		PhoneNumber = users.getString("Phonenumber", null);
 		context = Verification.this;
 		Verfication = (EditText) findViewById(R.id.etVerfication);

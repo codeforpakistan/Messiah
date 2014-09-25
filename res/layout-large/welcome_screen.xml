@@ -57,7 +57,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="in an emergency"
+            android:text="in an emergency."
             android:textColor="#FFFFFF"
             android:textSize="35sp" />
     </LinearLayout>
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/lengthy_button_selection"
             android:padding="15dp"
-            android:text="Select Your Messiahs >"
+            android:text="Select Your Messiah >"
 
             android:textSize="35sp" />
     </LinearLayout>

@@ -273,20 +273,13 @@ public class MessiahContacts extends Activity {
 			int menuItemIndex = 1;
 			String listItemName = Contacts[users.getInt("position", 0)];
 			menuopertion(menuItemIndex, listItemName);
+			ShowMessiahContact();
 
 		}
 			break;
 		}
 
 		return super.onContextItemSelected(item);
-		// AdapterView.AdapterContextMenuInfo info =
-		// (AdapterView.AdapterContextMenuInfo) item
-		// .getMenuInfo();
-		// int menuItemIndex = item.getItemId();
-		//
-		// String listItemName = Contacts[info.position];
-		// menuopertion(menuItemIndex, listItemName);
-		// return true;
 	}
 
 	private void menuopertion(int menuItemIndex, final String listItemName) {
@@ -368,9 +361,10 @@ public class MessiahContacts extends Activity {
 		// }
 		// }
 
-		menu.setHeaderTitle("My Context Menu");
-		menu.add(Menu.NONE, CONTEXT_MENU_VIEW, Menu.NONE, "Remove Contact");
+		menu.setHeaderTitle("Edit");
 		menu.add(Menu.NONE, CONTEXT_MENU_EDIT, Menu.NONE, "Edit Message");
+		menu.add(Menu.NONE, CONTEXT_MENU_VIEW, Menu.NONE, "Remove Contact");
+		
 
 	}
 

@@ -18,19 +18,20 @@ public class AccidentService extends Service implements SensorEventListener {
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometer;
 	private final float NOISE = (float) 1.0;
-	SharedPreferences users;
-	 Editor editor;
+	SharedPreferences users, prefs;
+	Editor editor;
 	float X;
 	float Y;
 	float Z;
 
 	@Override
 	public void onCreate() {
-		//Toast.makeText(getApplicationContext(), "started", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(getApplicationContext(), "started",
+		// Toast.LENGTH_SHORT).show();
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		prefs = getSharedPreferences("Settings", 0);
 		editor = users.edit();
-		
-		
+
 		mInitialized = false;
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		mAccelerometer = mSensorManager
@@ -83,7 +84,7 @@ public class AccidentService extends Service implements SensorEventListener {
 			mLastY = y;
 			mLastZ = z;
 			double g = 9.81;
-			double gMagnitude = 2;
+			double gMagnitude = 4;
 
 			float gx = deltaX;
 			float gy = deltaY;
@@ -92,18 +93,23 @@ public class AccidentService extends Service implements SensorEventListener {
 			double accl = Math.sqrt(gx * gx + gy * gy + gz * gz);
 
 			if (accl > gMagnitude * g) {
-				
-				if(users.getBoolean("Accident",false));{
-//				Intent i = new Intent();
-//				i.setClass(this, AccidentWarning.class);
-//				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			editor.putBoolean("Accident",true).commit();
-//				startActivity(i);
-				Toast.makeText(getApplicationContext(),String.valueOf(users.getBoolean("Accident",false)) , Toast.LENGTH_SHORT).show();
+				// Toast.makeText(getApplicationContext(), "AD"
+				// +String.valueOf(prefs.getBoolean("AD", false)), 5000).show();
+				// Toast.makeText(getApplicationContext(), "Acident"
+				// +String.valueOf(users.getBoolean("Accident", false)),
+				// 5000).show();
+				if (prefs.getBoolean("AD", false)) {
+					// if (users.getBoolean("Accident", false)) {
+					Intent i = new Intent();
+					i.setClass(this, AccidentWarning.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					// editor.putBoolean("Accident", false).commit();
+					startActivity(i);
+					// Toast.makeText(getApplicationContext(),String.valueOf(users.getBoolean("Accident",false)),Toast.LENGTH_SHORT).show();
+					// }
 				}
 			}
 		}
-
 	}
 
 }
