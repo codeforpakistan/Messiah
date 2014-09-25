@@ -28,14 +28,15 @@
     <string name="text_move_demo_step_2">Thank you</string>
     <string name="Step1">Step1: Setup your contacts</string>
     <string name="hover_message_entered_at"><u>Tip of the day</u></string>
-    
-     <string-array name="Setting_Array">
+
+    <string-array name="Setting_Array">
         <item>Accident Detection</item>
         <item>Daily Tip</item>
         <item>Messiah Alerts</item>
     </string-array>
-<string-array name="menu">
-        <item>Remove Contact</item>
+    <string-array name="menu">
         <item>Edit Message</item>
+        <item>Remove Contact</item>
     </string-array>
+
 </resources>

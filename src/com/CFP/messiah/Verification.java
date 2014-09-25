@@ -61,6 +61,8 @@ public class Verification extends Activity {
 		obj.locationContinousUpdate();
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
 		editor = users.edit();
+		editor.putBoolean("mainhelp", true).commit();
+		editor.putBoolean("maphelp", true).commit();
 		PhoneNumber = users.getString("Phonenumber", null);
 		context = Verification.this;
 		Verfication = (EditText) findViewById(R.id.etVerfication);
@@ -122,9 +124,11 @@ public class Verification extends Activity {
 	private void startnextactivity() {
 		if (status == 1) {
 			startActivity(new Intent(Verification.this, MainActivity.class));
+			Verification.this.finish();
 		} else {
 
-			Toast.makeText(getApplicationContext(), "ERROR", 5000).show();
+			Toast.makeText(getApplicationContext(),
+					"Invalid Verification Code ", 5000).show();
 		}
 
 	}

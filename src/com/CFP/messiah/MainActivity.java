@@ -7,9 +7,12 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
@@ -18,14 +21,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.telephony.SmsManager;
+import android.text.Editable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,10 +49,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Handler mHandler = new Handler();;
 	private int mProgressStatus = 0;
 	String lat = null;
-	
 	String lon = null;
 	TextView tip, maptext, settingstext, contacttext;
-	SharedPreferences users;
+	SharedPreferences users, prefs;
+	Editor editor;
+
 	// ShowcaseView sv;
 	// final GoogleAnalyticsTracker tracker =
 	@Override
@@ -52,28 +61,65 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onStop();
 		EasyTracker.getInstance(this).activityStop(this);
 	}
+@Override
+protected void onStart() {
+	super.onStart();
+	prefs = getSharedPreferences("Settings", 0);
+	editor = prefs.edit();
+	boolean tipcheck = prefs.getBoolean("TIPcheck", false);
+	if (tipcheck) {
+		AlertDialog.Builder builder1 = new AlertDialog.Builder(
+				MainActivity.this);
+		builder1.setMessage(prefs.getString("TIP", null));
+		builder1.setCancelable(true);
+		builder1.setPositiveButton("OK",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						editor.putBoolean("TIPcheck", false).commit();
+						dialog.cancel();
+					}
+				});
+
+		AlertDialog alert11 = builder1.create();
+		alert11.show();
+	}
+}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		prefs = getSharedPreferences("Settings", 0);
+		editor = prefs.edit();
+		boolean tipcheck = prefs.getBoolean("TIPcheck", false);
+		if (tipcheck) {
+			AlertDialog.Builder builder1 = new AlertDialog.Builder(
+					MainActivity.this);
+			builder1.setMessage(prefs.getString("TIP", null));
+			builder1.setCancelable(true);
+			builder1.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							editor.putBoolean("TIPcheck", false).commit();
+							dialog.cancel();
+						}
+					});
+
+			AlertDialog alert11 = builder1.create();
+			alert11.show();
+		}
+
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		EasyTracker.getInstance(this).activityStart(this);
+		
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		prefs = getSharedPreferences("Settings", 0);
+		editor = prefs.edit();
+		EasyTracker.getInstance(this).activityStart(this);
 		progBar = (ProgressBar) findViewById(R.id.progressBar1);
 		try {
-			
-			
-//			LayoutInflater inflater = (LayoutInflater) this.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-//			View view = inflater.inflate( R.layout.helpoverlay, null );
-//			setContentView(view);
-//			view.setOnClickListener(new View.OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View arg0) {
-//				setContentView(R.layout.activity_main);
-//					
-//				}
-//			});
 			tip = (TextView) findViewById(R.id.textView4);
 			maptext = (TextView) findViewById(R.id.tvmap);
 			settingstext = (TextView) findViewById(R.id.textView2);
@@ -97,7 +143,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				public void onClick(View arg0) {
 					AlertDialog.Builder builder1 = new AlertDialog.Builder(
 							MainActivity.this);
-					builder1.setMessage("If your car is on fire, pull over as quickly as it is safe to do so.");
+					builder1.setMessage(prefs.getString("TIP", null));
 					builder1.setCancelable(true);
 					builder1.setPositiveButton("OK",
 							new DialogInterface.OnClickListener() {
@@ -113,25 +159,29 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 			});
 		} catch (Exception e) {
-
 			Log.v("Error", e.toString());
 		}
+		
+		if(prefs.getBoolean("mainhelp", false))
+		showActivityOverlay();
+	}
 
-		// ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar1);
-		// Animation an = new RotateAnimation(0.0f, 90.0f, 250f, 273f);
-		// an.setFillAfter(true);
-		// pb.startAnimation(an);
+	private void showActivityOverlay() {
+		final Dialog dialog = new Dialog(this,
+				android.R.style.Theme_DeviceDefault);
+		dialog.setContentView(R.layout.activity_main_tran_overlay);
+		LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.llacto);
 
-		// ShowcaseView.ConfigOptions co = new ShowcaseView.ConfigOptions();
-		// co.hideOnClickOutside = true;
-		// ViewTarget target = new ViewTarget(R.id.btnSMS, this);
-		// sv = ShowcaseView.insertShowcaseView(target, this, "Hello",
-		// "Welcome", co);
-		// sv.setOnShowcaseEventListener(this);
+		layout.setOnClickListener(new View.OnClickListener() {
 
-		// sv = (ShowcaseView) findViewById(R.id.showcase);
-		// sv.setShowcaseView(findViewById(R.id.btnSMS));
-		// sv.setOnShowcaseEventListener(this);
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				editor.putBoolean("mainhelp", false).commit();
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
 	}
 
 	@Override
@@ -349,8 +399,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-@Override
-public void onBackPressed() {
-	System.exit(0);
-}
+
+	@Override
+	public void onBackPressed() {
+		System.exit(0);
+	}
 }

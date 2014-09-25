@@ -9,9 +9,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -22,8 +25,11 @@ import android.os.Bundle;
 import android.provider.Telephony.Sms.Conversations;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.text.Editable;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -47,7 +53,8 @@ public class ImplementMaps extends FragmentActivity {
 	LocationManager mLocationManager;
 	String lat, lon;
 	String PhoneNumber;
-	SharedPreferences users;
+	SharedPreferences users,prefs;
+	Editor editor;
 	AppLocationService appLocationService;
 	Location location;
 	JSONArray jsonarray;
@@ -61,12 +68,11 @@ public class ImplementMaps extends FragmentActivity {
 		setContentView(R.layout.maps);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		users = getSharedPreferences("Login Credentials", MODE_PRIVATE);
+		prefs = getSharedPreferences("Settings", 0);
+		editor = users.edit();
 		PhoneNumber = users.getString("Phonenumber", null);
-		// appLocationService = new AppLocationService(ImplementMaps.this);
-		// location = NWmethod();
 		markericon = BitmapDescriptorFactory.fromResource(R.drawable.map_loc);
 		try {
-			// Loading map
 			initilizeMap();
 			GetLocation();
 			new SetConnection().execute();
@@ -80,25 +86,42 @@ public class ImplementMaps extends FragmentActivity {
 						Map.Entry pairs = (Map.Entry) it.next();
 						if (m.equals(pairs.getKey())) {
 							hisPhoneNumber = pairs.getValue().toString();
-//							Toast.makeText(getApplicationContext(), hisPhoneNumber, Toast.LENGTH_SHORT).show();
-//							hisPhoneNumber.substring(1,hisPhoneNumber.length());
-//							Toast.makeText(getApplicationContext(), hisPhoneNumber, Toast.LENGTH_SHORT).show();
 							new SendNotification().execute();
 						}
-
-						// it.remove(); // avoids a
-						// ConcurrentModificationException
 					}
 
 					return true;
 				}
 			});
-			// Temp();
+			if(prefs.getBoolean("maphelp", false))
+				showActivityOverlay();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void showActivityOverlay() {
+		final Dialog dialog = new Dialog(this,
+				android.R.style.Theme_DeviceDefault);
+
+		dialog.setContentView(R.layout.map_overlay);
+
+		LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.llmo);
+		
+		layout.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				editor = prefs.edit();
+				editor.putBoolean("maphelp", false).commit();
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+		
 	}
 
 	private void getnearbymessiah() {
@@ -283,13 +306,27 @@ public void nomessiahfound(){
 		}
 	}
 	private class SendNotification extends AsyncTask<Void, Void, Void> {
-
+		private ProgressDialog progressDialog;
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = new ProgressDialog(ImplementMaps.this);
+			progressDialog.setMessage("Sending message to Messiah, Please wait...");
+			progressDialog.setIndeterminate(true);
+			progressDialog.show();
+		}
 		@Override
 		protected Void doInBackground(Void... arg0) {
 			sendnotification();
+			
 			return null;
 		}
-
+@Override
+protected void onPostExecute(Void result) {
+	super.onPostExecute(result);
+	progressDialog.setMessage("Message sent to Messiah");
+	progressDialog.hide();
+}
 		}
 	private void sendnotification() {
 		UserFunctions userfunction = new UserFunctions();

@@ -106,6 +106,7 @@ public class MessiahRegistertion extends Activity {
 			editor.putString("Phonenumber", phonenumber);
 			editor.commit();
 			startActivity(new Intent(MessiahRegistertion.this, Verification.class));
+			MessiahRegistertion.this.finish();
 			Log.v("Login", "Username and Password");
 
 		} else {

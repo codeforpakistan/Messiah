@@ -58,8 +58,11 @@ public class Settings extends Activity {
 		dt = prefs.getBoolean("DT", false);
 		if (ad) {
 			AD.setImageDrawable(getResources().getDrawable(R.drawable.on));
+			startService(i);
 		} else {
 			AD.setImageDrawable(getResources().getDrawable(R.drawable.off));
+			startService(i);
+			stopService(i);
 		}
 		if (bm) {
 			BM.setImageDrawable(getResources().getDrawable(R.drawable.on));
@@ -78,6 +81,7 @@ public class Settings extends Activity {
 				if (ad) {
 					AD.setImageDrawable(getResources().getDrawable(
 							R.drawable.off));
+					startService(i);
 					stopService(i);
 					editor.putBoolean("AD", false).commit();
 					Toast.makeText(getApplicationContext(),
@@ -104,14 +108,15 @@ public class Settings extends Activity {
 					BM.setImageDrawable(getResources().getDrawable(
 							R.drawable.off));
 					editor.putBoolean("BM", false).commit();
-					Toast.makeText(getApplicationContext(), "I am Messiah ",
+					Toast.makeText(getApplicationContext(), "No more Messiah",
 							Toast.LENGTH_SHORT).show();
 				} else {
 					BM.setImageDrawable(getResources().getDrawable(
 							R.drawable.on));
 					editor.putBoolean("BM", true).commit();
-					Toast.makeText(getApplicationContext(), "No more Messiah",
+					Toast.makeText(getApplicationContext(), "I am Messiah ",
 							Toast.LENGTH_SHORT).show();
+					
 				}
 
 			}
@@ -127,14 +132,14 @@ public class Settings extends Activity {
 							R.drawable.off));
 					editor.putBoolean("DT", false).commit();
 					Toast.makeText(getApplicationContext(),
-							"Accident Detection mode off", Toast.LENGTH_SHORT)
+							"Daily Tips off", Toast.LENGTH_SHORT)
 							.show();
 				} else {
 					DT.setImageDrawable(getResources().getDrawable(
 							R.drawable.on));
 					editor.putBoolean("DT", true).commit();
 					Toast.makeText(getApplicationContext(),
-							"Accident Detection mode on", Toast.LENGTH_SHORT)
+							"Daily Tips on", Toast.LENGTH_SHORT)
 							.show();
 				}
 

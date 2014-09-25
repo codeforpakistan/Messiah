@@ -14,7 +14,7 @@ import android.util.Log;
 public class UserFunctions {
 
 	private JSONParser jsonParser;
-	private static String IP = "107.170.26.223/messiah";//"192.168.1.4:8383/Messiah-Web";
+	private static String IP = "107.170.26.223";//"192.168.1.4:8383/Messiah-Web";
 	private static String RegisterationURL = "http://" + IP + "/inc/api.registration_controller.php/";// "http://messiah-pdma.herokuapp.com/inc/api.login_controller.php";
 	private static String VerificationURL = "http://" + IP + "/inc/api.verification_controller.php/";
 	private static String InsertLocationURL = "http://" + IP + "/inc/api.current_location_controller.php/";

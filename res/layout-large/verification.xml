@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+<LinearLayout
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -89,8 +93,10 @@
             android:layout_marginBottom="25dp"
             android:background="@drawable/lengthy_button_selection"
             android:text="Verify"
+            android:textCursorDrawable="@drawable/cursorcolor"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

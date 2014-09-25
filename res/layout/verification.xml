@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:fillViewport="true">
+
+<LinearLayout 
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -73,6 +78,7 @@
             android:background="#00000000"
             android:hint="Verification Code"
             android:lines="1"
+            android:textCursorDrawable="@drawable/cursorcolor"
             android:singleLine="true"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
@@ -103,3 +109,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

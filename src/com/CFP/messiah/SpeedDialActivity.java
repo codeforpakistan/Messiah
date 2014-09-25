@@ -59,61 +59,7 @@ public class SpeedDialActivity extends Activity {
 	}
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//
-//	// TODO Auto-generated method stub
-//	super.onActivityResult(requestCode, resultCode, data);
-//	int RESULT_PICK_CONTACT = 0;
-//	if (requestCode == RESULT_PICK_CONTACT && resultCode == RESULT_OK) {
-//
-//		Uri dataUri = data.getData();
-//		Cursor contacts = managedQuery(dataUri, null, null, null, null);
-//		if (contacts.moveToFirst()) {
-//			String name;
-//			int nameColumn = contacts
-//					.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-//			name = contacts.getString(nameColumn);
-//			Cursor phones = getContentResolver().query(dataUri, null, null,
-//					null, null);
-//			if (phones.moveToFirst()) {
-//				phoneName = phones
-//						.getString(phones
-//								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//				phoneNumber = phones
-//						.getString(phones
-//								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-//
-//			}
-//			if (checklist()) {
-//
-//				DataInsertion datainsertion = new DataInsertion(
-//						getApplicationContext(), phoneName,
-//						phoneNumber, message);
-//				ShowDialingContacts();
-//				int count = datainsertion.countSpeedcontacts(getApplicationContext());
-//				if (count > 0) {
-//					nocontacts.setText("");
-//				}
-//				
-//
-//				
-//			}
-//		}
-//		if (!checklist()) {
-//			Startprocess();
-//			Toast.makeText(getApplicationContext(),
-//					"Contact already exists", Toast.LENGTH_LONG).show();
-//
-//		}
-//	}
-//	int count = datainsertion.countcontacts(getApplicationContext());
-//	if (count > 0) {
-//		nocontacts.setText("");
-//	}
-//	
 
-
-	// TODO Auto-generated method stub
 	super.onActivityResult(requestCode, resultCode, data);
 	int RESULT_PICK_CONTACT = 0;
 	if (requestCode == RESULT_PICK_CONTACT && resultCode == RESULT_OK) {
