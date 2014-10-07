@@ -296,7 +296,7 @@ public class MessiahContacts extends Activity {
 				nocontacts.setText("No Contacts Added");
 				nocontacts.setVisibility(View.VISIBLE);
 			}
-
+			ShowMessiahContact();
 		} else {
 
 			// View Message
